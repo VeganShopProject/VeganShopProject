@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 회원 데이터 -->
+<mapper namespace="MemberDAOTemp">
+
+	<!-- 아이디 중복확인 -->
+	<select id="idCheck" resultType="int">
+		<![CDATA[ select count(*) from member where id=#{id} ]]>
+	</select>
+	
+	<!-- 아이디/비밀번호 찾기 -->
+	<select id="findMember" resultType="String">
+		<![CDATA[ select id from member where name=#{name} and jumin1=#{jumin1} and jumin2=#{jumin2} ]]>
+	</select>
+	
+	<!-- 사용자(관리자/회원) 로그인 체크 -->
+	<select id="memberCheck" resultType="member">
+		<![CDATA[ select * from member where id=#{id} ]]>
+	</select>
+	
+	<insert id="insertMember"> 
+		<![CDATA[
+			insert into member(seq, id, pw, name, jumin1, jumin2, email1, email2, email_get, mobile, phone, zipcode1, zipcode2, addr1, addr2)
+			values((select nvl(max(seq),0)+1 from member), #{id}, #{pw}, #{name}, #{jumin1}, #{jumin2}, #{email1}, #{email2}, #{email_get}, #{mobile}, #{phone}, #{zipcode1}, #{zipcode2}, #{addr1}, #{addr2} ) 
+		]]>
+	</insert>
+	
+	<select id="getMember" resultType="member">
+		<![CDATA[ select * from member where seq=#{seq} ]]>
+	</select> 
+	
+	<!-- 검색 기능 -->
+	<select id="getMemberList_I" resultType="member">
+		<![CDATA[ select * from member where id like '%'||#{searchKeyword}||'%' order by seq desc ]]>
+	</select>
+	
+	<select id="getMemberList_N" resultType="member">
+		<![CDATA[ select * from member where name like '%'||#{searchKeyword}||'%' order by seq desc ]]>
+	</select>
+	
+	<update id="updateMember">
+		<![CDATA[ update member 
+						set pw=#{pw}, email1=#{email1}, email2=#{email2}, phone=#{phone} where seq=#{seq} ]]>
+	</update>
+	
+	<delete id="deleteMember">
+		<![CDATA[ delete from member where seq=#{seq} ]]>
+	</delete>
+	
+</mapper>	

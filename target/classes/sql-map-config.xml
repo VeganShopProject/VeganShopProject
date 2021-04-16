@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  
+  	<!-- Alias(별명) 설정 -->
+  	<typeAliases> 
+  		<typeAlias alias="member" type="com.vegan.admin.member.repository.MemberVO" />
+  		<typeAlias alias="zipcode" type="com.vegan.admin.member.repository.ZipcodeVO" />
+  		<typeAlias alias="community" type="com.vegan.user.community.repository.CommunityVO" />
+  	</typeAliases>
+  	
+  	<!-- Sql Mapper 설정 -->
+  	<mappers>
+  		<mapper resource="mappings/member-mapping.xml"/>
+  		<mapper resource="mappings/zipcode-mapping.xml"/>
+  		<mapper resource="mappings/community-mapping.xml"/>
+  	</mappers>
+  
+</configuration>

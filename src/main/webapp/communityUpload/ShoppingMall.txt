@@ -1,0 +1,5 @@
+﻿http://localhost:8090/ShoppingMall/                          -> 메인 홈(로그인)
+
+http://localhost:8090/ShoppingMall/GoodsAddForm.ag  -> 상품등록
+
+http://localhost:8090/ShoppingMall/AdminOrderList.ao  -> 주문관리

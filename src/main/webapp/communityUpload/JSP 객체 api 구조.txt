@@ -1,0 +1,85 @@
+javax.servlet
+
+ Interface ServletContext (application 영역)
+  getInitParameter()
+  getInitParameterNames()
+  getRealPath() 
+
+ Interface ServletRequest (request 영역)
+  getAttribute()
+  getAttributeNames()
+  getParameter()
+  getParameterNames()
+  setAttribute()
+
+ Interface ServletResponse
+  getBuffersize()
+  setCharacterEncoding
+  setBuffersize()
+
+--------------------------------------
+
+javax.servlet.http
+
+ Interface HttpServletRequest (request 영역)
+  getContextPath()
+  getCookies()
+  getRequestURI()
+
+ Interface HttpServletResponse
+  addCookie()
+  sendRedirect()
+
+ Interface HttpSession (session 영역)
+  getAttribute()
+  getAttributeNames()
+  getMaxInactiveInterval()
+  invalidate()
+  removeAttribute()
+  setAttribute
+  setMaxInactiveInterval()
+
+ Class Cookie
+  setDomain()
+  getDomain()
+  setMaxAge()
+  setPath()
+  getName()
+  getValue()
+
+--------------------------------------
+
+javax.servlet.jsp
+
+ Class JspContext (pageContext : page 영역)(?)???
+  getAttribute()
+  setAttribute()
+  removeAttribute()
+
+ Class PageContext (pageContext)
+  getRequest()
+  getResponse()
+  getSession()
+  getServletContext() : application 객체 반환
+  getServletConfig() : confiv 객체 반환
+  getOut()
+  getException()
+  getPage()
+
+ Class JspWrite (out)
+   print()
+   println()
+   newLine()
+   getBufferSize()
+   getRemaining()
+   isAutoFlush()
+
+[JSP 코딩할 때 import안해도 되는 패키지]
+-java.lang.*;
+-javax.servlet.*;
+-javax.servlet.jsp.*;
+-javax.servlet.http.*;
+
+[getRequestURI()와 getRequestURL() 차이]
+-getRequestURI() : 도메인이후 하부 주소를 가져온다(주소만)
+-getRequestURL() : 호출된 FULL 주소를 가져온다 (주소,프로토콜,포트번호까지 출력)
