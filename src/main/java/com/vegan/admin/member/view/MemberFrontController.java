@@ -37,12 +37,25 @@ public class MemberFrontController { //회원 관리
 			return "redirect:adminPage/adminMain.jsp";
 		}else { //회원인 경우
 			System.out.println("메인 페이지 조회 처리");
-			return "redirect:loginPage/main.jsp";
+			return "./loginPage/main.jsp";
+		
 		}
 	}
 	
+	@RequestMapping(value = "/filterQaaLogin.me", method = RequestMethod.POST)
+	public String goBackPreviousPage(MemberVO vo, Model model) {
+		System.out.println("fitlerLogin");
+		MemberVO member = new MemberVO();
+		member = memberService.memberCheck(vo);
+		model.addAttribute("member", member);
+		
+		return "./getBoardList.qa";
+
+	}
+	
+	
 	//로그아웃 처리
-	@RequestMapping(value = "/memberLogout.me")
+	@RequestMapping("/memberLogout.me")
 	public String memberLogout(MemberVO vo, Model model, HttpSession session) {
 		System.out.println("로그아웃 처리");
 		session.removeAttribute("member");
