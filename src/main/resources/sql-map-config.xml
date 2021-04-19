@@ -9,6 +9,10 @@
   		<typeAlias alias="member" type="com.vegan.admin.member.repository.MemberVO" />
   		<typeAlias alias="zipcode" type="com.vegan.admin.member.repository.ZipcodeVO" />
   		<typeAlias alias="community" type="com.vegan.user.community.repository.CommunityVO" />
+  		<typeAlias alias="qaa" type="com.vegan.user.qaa.biz.QaaBoardVO"/>
+		<typeAlias alias="adminqaa" type="com.vegan.admin.qaa.biz.AdminQaaBoardVO"/>
+  		<typeAlias alias="adminfaq" type="com.vegan.admin.faq.biz.AdminFaqBoardVO"/>
+		<typeAlias alias="faq" type="com.vegan.user.faq.biz.faqBoardVO"/>
   	</typeAliases>
   	
   	<!-- Sql Mapper 설정 -->
@@ -16,6 +20,10 @@
   		<mapper resource="mappings/member-mapping.xml"/>
   		<mapper resource="mappings/zipcode-mapping.xml"/>
   		<mapper resource="mappings/community-mapping.xml"/>
+  		<mapper resource="mappings/qaa-mapping.xml"/>
+		<mapper resource="mappings/adminqaa-mapping.xml"/>
+		<mapper resource="mappings/adminFaq-mapping.xml"/>
+		<mapper resource="mappings/faq-mapping.xml"/>
   	</mappers>
   
 </configuration>

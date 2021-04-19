@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminFaqBoardDAOTemp">
+	
+	<insert id="insertBoard">
+		<![CDATA[
+			insert into faq(seq, title, writer, content) 
+			values((Select nvl(max(seq),0)+1 from faq),#{title},#{writer},#{content})
+		]]>
+	</insert>
+	
+	<update id="updateBoard">
+		<![CDATA[	
+			update faq set title=#{title}, content=#{content} where seq=#{seq}
+		]]>
+	</update>
+	
+	<delete id="deleteBoard">
+		<![CDATA[
+			delete faq where seq=#{seq}
+		]]>
+	</delete>
+	
+	<select id="getBoard" resultType="adminfaq">
+		<![CDATA[
+			select * from faq where seq=#{seq}
+		]]>
+	</select>
+	
+	<select id="getBoardList_T" resultType="adminfaq">
+		<![CDATA[	
+			select * from faq where title like '%'||#{searchKeyword}||'%' order by seq desc
+		]]>
+	</select>
+	
+	<select id="getBoardList_C" resultType="adminfaq">
+		<![CDATA[
+			select * from faq where content like '%'||#{searchKeyword}||'%' order by seq desc
+		]]>
+	</select>
+	
+	<select id="getBoardList_W" resultType="adminfaq">
+		<![CDATA[
+			select * from faq where writer like '%'||#{searchKeyword}||'%' order by seq desc
+		]]>
+	</select>
+
+</mapper>

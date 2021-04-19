@@ -19,9 +19,7 @@ CREATE TABLE MEMBER(
 	MEMBER_DATE 	DATE DEFAULT SYSDATE
 );
 select * from MEMBER;
-insert into member values(1,'admin','admin','관리자',0,0,'','','','','','','','','',sysdate);
-insert into member values(2,'user1','user1','사용자1',0,0,'','','','','','','','','',sysdate);
-delete from member where seq=4;
+
 
 --주소 
 DROP TABLE ZIPCODE;
@@ -62,3 +60,36 @@ insert into community values(9,'레시피','김추천','제 인생레시피 공�
 insert into community values(10,'식당정보','박채식','너무 맛있다~','추천.jpg','추천추천',sysdate,0);
 insert into community values(11,'레시피','김추천','제 인생레시피 공유합니다!','레시피.jpg','다들 꼭 드셔보세요. 레시피도 진짜 쉬워요!',sysdate,0);
 insert into community values(12,'식당정보','박채식','너무 맛있다~','추천.jpg','추천추천',sysdate,0);
+
+
+--1:1 문의
+DROP TABLE QAA PURGE;
+CREATE TABLE QAA(
+	seq 					NUMBER 	PRIMARY KEY,
+	id				        VARCHAR2(50),
+	category			VARCHAR2(50),
+	subject  			VARCHAR2(200),
+	content	  		VARCHAR2(2000),	
+	re_ref       		NUMBER,
+	re_lev      		NUMBER,
+	status       	    VARCHAR2(50) default '등록 완료',
+	qaa_date			DATE  default sysdate
+	
+);
+
+select * from qaa;
+
+
+--FAQ
+drop table faq purge;
+
+create table faq(
+	seq    				number(5) primary key,
+	title 					varchar2(200),
+	writer	 			varchar2(20),
+	content	 			varchar2(2000),
+	regdate 			date default sysdate,
+	cnt	 				number(5) default 0
+);
+
+select * from faq;
