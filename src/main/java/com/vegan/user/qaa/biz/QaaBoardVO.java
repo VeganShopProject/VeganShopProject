@@ -11,6 +11,7 @@ public class QaaBoardVO {
 	private String category;
 	private String subject;
 	private String content;
+	private String image;
 	private int re_ref;
 	private int re_lev;
 	private String status;
@@ -18,8 +19,10 @@ public class QaaBoardVO {
 
 	private Date qaa_date;
 	
-
 	private MultipartFile uploadFile;
+	
+
+
 	
 	
 	public int getSeq() {
@@ -72,6 +75,12 @@ public class QaaBoardVO {
 	}
 
 
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public Date getQaa_date() {
 		return qaa_date;
 	}
@@ -79,12 +88,12 @@ public class QaaBoardVO {
 		this.qaa_date = qaa_date;
 	}
 	public MultipartFile getUploadFile() {
-		
 		return uploadFile;
 	}
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
+
 	
 	
 	

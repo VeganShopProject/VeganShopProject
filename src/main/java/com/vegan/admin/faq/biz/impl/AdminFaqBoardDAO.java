@@ -37,16 +37,9 @@ public class AdminFaqBoardDAO {
 
 	public List<AdminFaqBoardVO> getBoardList(AdminFaqBoardVO vo) {
 
-		if(vo.getSearchCondition().equals("TITLE")) {
-			return mybatis.selectList("AdminFaqBoardDAOTemp.getBoardList_T", vo);
-		}else if(vo.getSearchCondition().equals("CONTENT")) {
-			return mybatis.selectList("AdminFaqBoardDAOTemp.getBoardList_C", vo);
-		}else if(vo.getSearchCondition().equals("WRITER")) {
-			return mybatis.selectList("AdminFaqBoardDAOTemp.getBoardList_W", vo);
-		}else {
-			return mybatis.selectList("AdminFaqBoardDAOTemp.getBoardList_T", vo);
-		}
-	
+		return mybatis.selectList("AdminFaqBoardDAOTemp.getBoardList", vo);
+			
+
 	}
 
 

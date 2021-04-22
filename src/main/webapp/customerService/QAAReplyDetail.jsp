@@ -43,7 +43,7 @@
 				<tr>
 					<td colspan="3" id="lasttag">
 						
-						<a href="/board/customerService/insertQAA.jsp?id=${member.id }" id="insertBoard" class="post-request">새글 등록</a>&emsp;
+						<a href="/board/customerService/QAAinsert.jsp?id=${member.id }" id="insertBoard" class="post-request">새글 등록</a>&emsp;
 						<a href="deleteBoard.qa?re_ref=${qaa.re_ref }&id=${member.id }" id="deleteBoard" class="post-request">글삭제</a>&emsp;
 						<a href="./getBoardList.qa?id=${member.id }" class="post-request">취소</a>
 					</td>

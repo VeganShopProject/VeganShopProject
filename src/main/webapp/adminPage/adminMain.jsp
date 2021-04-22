@@ -4,59 +4,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 메인페이지</title>
-</head>
-<body>
-	<%-- 관리자 로그인 성공한 경우 출력되는 페이지 --%>
-	<h2>관리자 메인 페이지</h2>
-	<a href="../memberList.ad" class="post-request">회원 목록</a><br><br><br>
-	<a href="../getBoardList.aq" class="post-request">관리자 1:1 문의 목록</a><br><br><br>
-	<a href="../getBoardList.fa" class="post-request">관리자 faq 관리</a><br><br><br>
+<title>관리자페이지</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+a {color: inherit; text-decoration: none;}
+* {box-sizing: border-box;}
+body {
+	margin: 0 auto;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 60%;
+}
+.w3-teal{
+	padding: 10px;
+	background-color: #213421 !important
+}
+.w3-container {
+	padding: 10px;
+	background-color: rgba(249, 225, 205, 0.35);
+	height:100%;
+}
+h1{
+	text-align: center;
+}
 
-	<script type="text/javascript" >
+</style>
+</head>
+
+<body>
+
+<script>
 	
-		// GET ALL THE LINKS WE WANT TO DO A POST ON
-		// jQuery EQUIVALENT WOULD BE $('.post-request').click(function(e)
-		var links = document.querySelectorAll('.post-request');
-		 
-		// LOOP THROUGH THE FOUND LINKS AND ADD A CLICK HANDLER
-		for(var l = 0; l < links.length; l++) {
-		  links[l].addEventListener('click', function(e) {
-		    // PREVENT DEFAULT click BEHAVIOUR
-		    e.preventDefault();
-		    
-		    // BREAK THE URL INTO TWO action AND parameters
-		    var url = this.href.split('?');
-		    
-		    // ONLY LOOK FOR PARAMS IF THEY WERE SPECIFIED
-		    var params = (url.length > 1) ? url[1].split('&') : []
-		 
-		    // CREATE A FORM
-		    var form = document.createElement('form');
-		    
-		    // MAKE IT POST TO THE URL
-		    form.setAttribute('method','post');
-		    form.setAttribute('action', url[0]);
-		    
-		    // LOOP THROUGH THE PARAMETERS AND ADD THEM AS CONTROLS TO THE FORM
-		    for(var i = 0; i < params.length;i++) {
-		      // CREATE THE <input> AS A text CONTROL
-		      var inp = document.createElement('input');
-		      inp.setAttribute('type', 'hidden');
-		      // SPLIT parameter INTO key / value AND ADD TO input
-		      var value = params[i].split('=');
-		      inp.setAttribute('name',value[0]);
-		      inp.setAttribute('value', value[1]);
-		 
-		      // APPEND TO <form>
-		      form.appendChild(inp);
-		    }
-		    // APPEND <form> TO BODY AND SUBMIT
-		    document.getElementsByTagName('body')[0].appendChild(form);
-		    form.submit();
-		  });
-		}
-	</script>
+	function w3_open() {
+		document.getElementById("mySidebar").style.display = "block";	
+	}
+	function w3_close() {
+  		document.getElementById("mySidebar").style.display = "none";
+	}
+	
+</script>
+
+<%@ include file="adminMainIncludeHeaderHamburger.jsp" %> 
+
+<div class="w3-container">
+<p>This sidebar is hidden by default, (style="display:none")</p>
+<p>You must click on the "hamburger" icon (top left) to open it.</p>
+<p>The sidebar will hide a part of the page content.</p>
+</div>
 
 </body>
 </html>

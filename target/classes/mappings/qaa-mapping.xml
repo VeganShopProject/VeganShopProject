@@ -5,9 +5,9 @@
 	
 	<insert id="insertBoard">
 		<![CDATA[
-			insert into QAA(seq, id, category, subject, content, re_ref, re_lev) 
+			insert into QAA(seq, id, category, subject, content, image ,re_ref, re_lev) 
 			values((Select nvl(max(seq),0)+1 from QAA), 
-			#{id}, #{category}, #{subject}, #{content}, (Select nvl(max(re_ref),0)+1 from QAA), 1)
+			#{id}, #{category}, #{subject}, #{content}, #{image}, (Select nvl(max(re_ref),0)+1 from QAA), 1)
 		]]>
 	</insert>
 	

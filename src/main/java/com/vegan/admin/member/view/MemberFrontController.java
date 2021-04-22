@@ -27,29 +27,93 @@ public class MemberFrontController { //회원 관리
 
 	//사용자(관리자/회원) 로그인 체크
 	@RequestMapping(value = "/memberLogin.me", method = RequestMethod.POST)
-	public String memberCheck(MemberVO vo, Model model) {
+	public String memberCheck(MemberVO vo, Model model, HttpSession session) {
 		MemberVO member = new MemberVO();
 		member = memberService.memberCheck(vo);
 		model.addAttribute("member", member);
+
 		
 		if((member.getId()).equals("admin")) { //관리자인 경우
 			System.out.println("회원목록 조회 처리");
 			return "redirect:adminPage/adminMain.jsp";
 		}else { //회원인 경우
 			System.out.println("메인 페이지 조회 처리");
+
 			return "./loginPage/main.jsp";
 		
 		}
 	}
 	
 	@RequestMapping(value = "/filterQaaLogin.me", method = RequestMethod.POST)
-	public String goBackPreviousPage(MemberVO vo, Model model) {
-		System.out.println("fitlerLogin");
+	public String goBackPreviousPageQaa(MemberVO vo, Model model) {
+		
 		MemberVO member = new MemberVO();
 		member = memberService.memberCheck(vo);
 		model.addAttribute("member", member);
 		
 		return "./getBoardList.qa";
+
+	}
+	
+	@RequestMapping(value = "/filterBasketLogin.me", method = RequestMethod.POST)
+	public String goBackPreviousPageBasket(MemberVO vo, Model model, HttpSession session) {
+		System.out.println("fitlerLogin");
+		MemberVO member = new MemberVO();
+		member = memberService.memberCheck(vo);
+		model.addAttribute("member", member);
+		session.setAttribute("seq", member.getSeq());
+		session.setAttribute("id", member.getId());
+		
+		
+		return "./basketList.do";
+
+	}
+	
+	
+	@RequestMapping(value = "/filterAddBasketLogin.me", method = RequestMethod.POST)
+	public String goBackPreviousPageAddBasket(MemberVO vo, Model model, HttpSession session) {
+		System.out.println("fitlerLogin");
+		MemberVO member = new MemberVO();
+		member = memberService.memberCheck(vo);
+		model.addAttribute("member", member);
+		session.setAttribute("seq", member.getSeq());
+		session.setAttribute("id", member.getId());
+		session.setAttribute("pw", member.getPw()); //이전 로그인, 직전 로그인 판별용.
+	
+		
+		
+		return "./addBasket.do";
+
+	}
+	
+	@RequestMapping(value = "/filterOrderLogin.me", method = RequestMethod.POST)
+	public String goBackPreviousPageOrder(MemberVO vo, Model model, HttpSession session) {
+		
+		MemberVO member = new MemberVO();
+		member = memberService.memberCheck(vo);
+		model.addAttribute("member", member);
+		session.setAttribute("seq", member.getSeq());
+		session.setAttribute("id", member.getId());
+		
+		
+		return "./orderList.od";
+
+	}
+	
+	@RequestMapping(value = "/filterOrderOnlyThisLogin.me", method = RequestMethod.POST)
+	public String goBackPreviousPageOrderOnlyThis(MemberVO vo, Model model, HttpSession session) {
+		
+		MemberVO member = new MemberVO();
+		member = memberService.memberCheck(vo);
+		System.out.println("1");
+		model.addAttribute("member", member);
+		System.out.println("2");
+		session.setAttribute("seq", member.getSeq());
+		session.setAttribute("id", member.getId());
+		session.setAttribute("pw", member.getPw()); //이전 로그인, 직전 로그인 판별용.
+		
+		
+		return "./prepareOrderOnly.od";
 
 	}
 	

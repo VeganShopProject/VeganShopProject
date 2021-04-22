@@ -36,17 +36,8 @@ public class faqBoardDAO {
 
 
 	public List<faqBoardVO> getBoardList(faqBoardVO vo) {
-
-		if(vo.getSearchCondition().equals("TITLE")) {
-			return mybatis.selectList("faqBoardDAOTemp.getBoardList_T", vo);
-		}else if(vo.getSearchCondition().equals("CONTENT")) {
-			return mybatis.selectList("faqBoardDAOTemp.getBoardList_C", vo);
-		}else if(vo.getSearchCondition().equals("WRITER")) {
-			return mybatis.selectList("faqBoardDAOTemp.getBoardList_W", vo);
-		}else {
-			return mybatis.selectList("faqBoardDAOTemp.getBoardList_T", vo);
-		}
-	
+		return mybatis.selectList("faqBoardDAOTemp.getBoardList", vo);
+		
 	}
 
 

@@ -11,102 +11,7 @@
 	  margin: 0;
 	}
 	
-	.header {
-	  background-color: #f1f1f1;
-	  padding: 30px;
-	  text-align: center;
-	}
 	
-	.location_wrap{
-	  border-top: 1px solid #e5e5e5;
-	  position: relative;
-	  height: 40px;
-	  background-color: #194B30;
-	  color: #f1f1f1;
-	  text-align: left;
-	}
-	
-		
-	.location_wrap .location_inner{
-	  width: 1220px;
-
-	  
-	  text-align: left;
-	  
-	  
-	  
-	}
-	
-	.location_wrap .location_inner li{
-	  display: inline-block;
-	  	  margin-top: -23px;
-	
-	}
-	
-	.location_wrap .location_inner li::after{
-	  content: '>';
-	  width: 5px;
-	  height: 9px;
-	  display: inline-block;
-	  margin: 21px 10px 0;
-	  vertical-align: baseline;
-	  
-	}
-	
-	.location_wrap .location_inner li:last-child::after{
-	  display: none;
-	}
-	
-	.location_wrap .location_inner li a{
-	  font:300 16px/50px 'Roboto','Noto Sans KR';
-	  color: white;
-	  text-align: left;
-	  letter-spacing: -0.2px;
-	}
-	
-	.location_wrap .location_inner li a:link{
-	  text-decoration: none;
-	}
-	
-	.sticky {
-	  position: fixed;
-	  top: 0;
-	  width: 100%;
-	}
-	
-	.sticky + .main {
-	  padding-top: 102px;
-	}
-	
-	.sidenav {
-	  width: 130px;
-	  position: fixed;
-	  z-index: 1;
-	  top: 300px;
-	  right: 30px;
-	  background: #eee;
-	  overflow-x: hidden;
-	  padding: 8px 0;
-	}
-
-	.sidenav a {
-	  padding: 6px 8px 6px 16px;
-	  text-decoration: none;
-	  font-size: 25px;
-	  color: #2196F3;
-	  display: block;
-	}
-
-	.sidenav a:hover {
-	  color: #064579;
-	}
-	
-	
-
-	@media screen and (max-height: 450px) {
-	  .sidenav {padding-top: 15px;}
-	  .sidenav a {font-size: 18px;}
-	}
 	
 	.main{
 		padding: 16px;
@@ -219,28 +124,7 @@
 </style>
 </head>
 <body>
-	<div class="header">
-	  <h1>Header Area</h1>
-	</div>
 	
-	<div class="location_wrap" id="myHeader">
-		<div class="location_inner">
-			<ul>
-				<li><a href="/board/loginPage/main.jsp?id=${member.id }" class="post-request">홈</a></li>
-				<li><a href="javascript:void(0);">고객의 소리</a></li>
-				<li><a href="/board/getBoardList.qa?id=${member.id }" class="post-request">1:1 문의 게시판</a></li>
-				<li><a href="/board/getBoard.qa?re_ref=${board.re_ref}&status=${board.status}&id=${member.id}">문의 글 상세보기</a></li>
-			</ul>
-		</div>
-	</div>
-	
-	<div class="sidenav">
-	  <a href="#about">About</a>
-	  <a href="#services">Services</a>
-	  <a href="#clients">Clients</a>
-	  <a href="#contact">Contact</a>
-	</div>
-
 	<div class="main">
 		<div class="title_wrap clfix">
 			<h3>1:1 문의 게시판</h3>
@@ -267,6 +151,10 @@
 					<th>내용</th>
 					<td colspan="2"><textarea name="content" id="content">${qaa.content }</textarea></td>
 				</tr>
+	<%-- 			<tr>
+					<th>첨부파일</th>
+					<td colspan="2"><img src="/uploadQaa/${qaa.image }"></td>
+				</tr> --%>
 				<tr>
 					<th >등록일</th>
 					<td colspan="2">${qaa.qaa_date }</td>
@@ -277,7 +165,7 @@
 				<tr>
 					<td colspan="3" id="lasttag">
 					<input name="id" type="hidden" value="${member.id}" />
-						<a href="/board/customerService/insertQAA.jsp?id=${member.id }" id="insertBoard" class="post-request">새글 등록</a>&emsp;
+						<a href="/board/customerService/QAAinsert.jsp?id=${member.id }" id="insertBoard" class="post-request">새글 등록</a>&emsp;
 						<a href="javascript:updateQaa.submit()" class="post-request">수정 하기</a>&emsp;
 						<a href="/board/deleteBoard.qa?re_ref=${qaa.re_ref }&id=${member.id }" id="deleteBoard" class="post-request">글삭제</a>&emsp;
 						<a href="/board/getBoardList.qa?id=${member.id }" class="post-request">취소</a>
@@ -293,22 +181,8 @@
 
 	
 	
-	<script type="text/javascript">
-		
-		window.onscroll = function() {myFunction()};
-		
-		var header = document.getElementById("myHeader");
-		var sticky = header.offsetTop;
-		
-		function myFunction() {
-		  if (window.pageYOffset > sticky) {
-		    header.classList.add("sticky");
-		  } else {
-		    header.classList.remove("sticky");
-		  }
-		}
-		
-		
+<script type="text/javascript" >
+	
 		// GET ALL THE LINKS WE WANT TO DO A POST ON
 		// jQuery EQUIVALENT WOULD BE $('.post-request').click(function(e)
 		var links = document.querySelectorAll('.post-request');
@@ -350,6 +224,6 @@
 		    form.submit();
 		  });
 		}
-	</script>	
+	</script>
 </body>
 </html>
