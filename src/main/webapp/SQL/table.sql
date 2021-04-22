@@ -70,6 +70,7 @@ CREATE TABLE QAA(
 	category			VARCHAR2(50),
 	subject  			VARCHAR2(200),
 	content	  		VARCHAR2(2000),	
+	image 	        VARCHAR2(300),
 	re_ref       		NUMBER,
 	re_lev      		NUMBER,
 	status       	    VARCHAR2(50) default '등록 완료',
@@ -85,11 +86,78 @@ drop table faq purge;
 
 create table faq(
 	seq    				number(5) primary key,
-	title 					varchar2(200),
-	writer	 			varchar2(20),
-	content	 			varchar2(2000),
+	title 					varchar2(300),
+	writer	 			varchar2(20) default '관리자',
+	content	 			varchar2(4000),
 	regdate 			date default sysdate,
 	cnt	 				number(5) default 0
 );
 
 select * from faq;
+
+
+--장바구니
+DROP TABLE BASKET PURGE;
+CREATE TABLE BASKET
+(
+    MEMBER_SEQ NUMBER, --회원 seq
+    GOODS_SEQ NUMBER,  --상품 seq
+    AMOUNT    NUMBER, -- 장바구니에 담을 수량
+    REG_DATE  DATE, -- 장바구니에 담긴 일자
+    PRIMARY KEY (MEMBER_SEQ, GOODS_SEQ) -- 회원 seq,상품 seq는 고유값으로 지정
+);
+
+--결제
+DROP TABLE GOODS_ORDER purge;
+CREATE TABLE GOODS_ORDER(
+	
+	ORDER_TRADENUM VARCHAR2(100),   --추가: 주문번호 S20210314_member.seq_member_ordernum
+	ORDER_NUM NUMBER,
+	ORDER_GOODS_NUM	 NUMBER,
+	ORDER_GOODS_NAME VARCHAR2(50),
+	ORDER_GOODS_AMOUNT NUMBER, --전체 개수
+	ORDER_GOODS_IMAGE VARCHAR2(50),
+	ORDER_GOODS_PRICE NUMBER,
+	ORDER_GOODS_COUNT NUMBER, --고객 주문 개수
+	ORDER_MEMBER_ID VARCHAR2(20),
+	ORDER_MEMBER_SEQ NUMBER,		--추가: 고객 번호 member.seq
+	ORDER_MEMBER_ORDERNUM NUMBER,	--추가: 고객의 주문건수
+	ORDER_RECEIVE_NAME VARCHAR2(20),
+	ORDER_RECEIVE_ADDR1 VARCHAR2(70),
+	ORDER_RECEIVE_ADDR2 VARCHAR2(70),
+	ORDER_RECEIVE_PHONE VARCHAR2(13),
+	ORDER_RECEIVE_MOBILE VARCHAR2(13), 
+	ORDER_RECEIVE_EMAIL VARCHAR2(25), 
+	ORDER_RECEIVE_ZIPCODE1 VARCHAR2(13), 
+	ORDER_RECEIVE_ZIPCODE2 VARCHAR2(13), 
+	ORDER_MEMO VARCHAR2(3000),
+	ORDER_SUM_MONEY NUMBER,
+	ORDER_TRADE_TYPE VARCHAR2(20),
+	ORDER_TRADE_DATE DATE DEFAULT SYSDATE,
+	ORDER_TRADE_PAYER VARCHAR2(20),
+	ORDER_DATE DATE DEFAULT SYSDATE,
+	ORDER_STATUS NUMBER
+
+);
+
+drop table checkout_temp_lolo purge
+
+select * from goods_order;
+
+select * from basket
+
+
+		SELECT
+			O.ORDER_NUM		AS order_num,
+			O.ORDER_TRADENUM		AS order_tradenum,
+			O.ORDER_GOODS_NAME	AS order_goods_name,
+			O.ORDER_GOODS_IMAGE		AS order_goods_image,
+			O.ORDER_GOODS_PRICE		AS order_goods_price,
+			O.ORDER_GOODS_COUNT		AS order_goods_count,
+			O.ORDER_MEMBER_ID		AS order_member_id,
+			O.ORDER_SUM_MONEY		AS order_sum_money,
+			O.ORDER_STATUS		AS order_status,
+			O.ORDER_DATE		AS order_date
+		FROM GOODS_ORDER O 
+		WHERE O.ORDER_MEMBER_SEQ = 1
+		

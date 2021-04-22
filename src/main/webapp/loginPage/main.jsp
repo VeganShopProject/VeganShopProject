@@ -12,8 +12,11 @@
 	<h2>${member.name}님 환영합니다.</h2>
 	<h3> 메인 페이지</h3>
 	<a href="/board/getCmntList.co?id=${member.id }" class="post-request">커뮤니티 페이지</a><br><br><br>
-	<a href="/board/getBoardList.qa?id=${member.id }" class="post-request">고객 1:1 문의 목록</a><br><br><br>
-	<a href="/board/getBoardList.fu?id=${member.id }" class="post-request">고객 faq</a><br><br><br>
+	<a href="/board/getBoardList.fu?id=${member.id }" class="post-request">고객 서비스 메인</a><br><br><br>
+	<a href="/board/getBoardList.qa?id=${member.id }" class="post-request">고객 1:1 문의 목록</a><br><br><br>	
+	<a href="/board/basketList.do" class="post-request">장바구니 목록</a><br><br><br>
+	<a href="/board/orderList.od" class="post-request">주문 내역</a><br><br><br>
+	<a href="/board/goodstest/goodsTest.jsp?seq=${member.seq }" class="post-request">장바구니 추가 기능 테스트를 위한 상품 목록</a><br><br><br>
 	<hr>
 
 	<script type="text/javascript" >

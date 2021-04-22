@@ -28,22 +28,12 @@
 		]]>
 	</select>
 	
-	<select id="getBoardList_T" resultType="faq">
+	<select id="getBoardList" resultType="faq">
 		<![CDATA[	
-			select * from faq where title like '%'||#{searchKeyword}||'%' order by seq desc
+			select * from faq order by seq desc
 		]]>
 	</select>
 	
-	<select id="getBoardList_C" resultType="faq">
-		<![CDATA[
-			select * from faq where content like '%'||#{searchKeyword}||'%' order by seq desc
-		]]>
-	</select>
 	
-	<select id="getBoardList_W" resultType="faq">
-		<![CDATA[
-			select * from faq where writer like '%'||#{searchKeyword}||'%' order by seq desc
-		]]>
-	</select>
 
 </mapper>

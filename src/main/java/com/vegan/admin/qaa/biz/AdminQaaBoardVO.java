@@ -13,6 +13,7 @@ public class AdminQaaBoardVO {
 	private String content;
 	private int re_ref;
 	private int re_lev;
+	private String image;
 	private String status;
 	private String searchCondition;
 	private String searchKeyword;
@@ -76,6 +77,12 @@ public class AdminQaaBoardVO {
 	}
 
 	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public boolean isCheckReply() {
 		return checkReply;
 	}

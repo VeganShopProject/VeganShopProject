@@ -5,8 +5,8 @@
 	
 	<insert id="insertBoard">
 		<![CDATA[
-			insert into faq(seq, title, writer, content) 
-			values((Select nvl(max(seq),0)+1 from faq),#{title},#{writer},#{content})
+			insert into faq(seq, title, content) 
+			values((Select nvl(max(seq),0)+1 from faq),#{title}, #{content})
 		]]>
 	</insert>
 	
@@ -28,22 +28,11 @@
 		]]>
 	</select>
 	
-	<select id="getBoardList_T" resultType="adminfaq">
+	<select id="getBoardList" resultType="adminfaq">
 		<![CDATA[	
-			select * from faq where title like '%'||#{searchKeyword}||'%' order by seq desc
+			select * from faq order by seq desc
 		]]>
 	</select>
-	
-	<select id="getBoardList_C" resultType="adminfaq">
-		<![CDATA[
-			select * from faq where content like '%'||#{searchKeyword}||'%' order by seq desc
-		]]>
-	</select>
-	
-	<select id="getBoardList_W" resultType="adminfaq">
-		<![CDATA[
-			select * from faq where writer like '%'||#{searchKeyword}||'%' order by seq desc
-		]]>
-	</select>
+
 
 </mapper>

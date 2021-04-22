@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인 페이지</title>
+<!-- <script type="text/javascript">
+	$().ready(function() {
+		alert("로그인이 필요합니다.");
+	});
+</script> -->
 
 
 </head>

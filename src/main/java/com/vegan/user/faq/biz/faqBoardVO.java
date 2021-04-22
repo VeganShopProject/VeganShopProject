@@ -2,8 +2,6 @@ package com.vegan.user.faq.biz;
 
 import java.util.Date;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class faqBoardVO {
 	
 	private int seq;
@@ -12,9 +10,7 @@ public class faqBoardVO {
 	private String content;
 	private Date regDate ;
 	private int cnt ;
-	private String searchCondition;
-	private String searchKeyword;
-	private MultipartFile uploadFile;
+
 
 	
 
@@ -54,25 +50,7 @@ public class faqBoardVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}	
-	public String getSearchCondition() {
-		return searchCondition;
-	}
-	public void setSearchCondition(String searchCondition) {
-		this.searchCondition = searchCondition;
-	}
-	public String getSearchKeyword() {
-		return searchKeyword;
-	}
-	public void setSearchKeyword(String searchKeyword) {
-		this.searchKeyword = searchKeyword;
-	}
-	
-	public MultipartFile getUploadFile() {
-		return uploadFile;
-	}
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
-	}
+
 	
 	
 	

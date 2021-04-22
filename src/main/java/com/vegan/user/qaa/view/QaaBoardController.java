@@ -28,15 +28,21 @@ public class QaaBoardController {
 	//글 등록 - command 객체에 담아준다.
 	@RequestMapping("/insertBoard.qa")
 	public String insertBoard(QaaBoardVO vo, HttpSession session, Model model) throws IOException {
-		
+		model.getAttribute("member");
 		String fileSaveFolder = session.getServletContext().getRealPath("/uploadQaa/"); 
+		
 
 		MultipartFile uploadFile = vo.getUploadFile();
 		if(!uploadFile.isEmpty()) { 
 			String fileName = uploadFile.getOriginalFilename(); //현재 첨부된 파일의 이름을 반환
 			uploadFile.transferTo(new File(fileSaveFolder+fileName)); //입력으로 
+			vo.setImage(fileName);
+		}else {
+			vo.setImage("");
 		}
 		
+		
+		System.out.println("콘트롤러");
 		boardService.insertBoard(vo);
 		
 

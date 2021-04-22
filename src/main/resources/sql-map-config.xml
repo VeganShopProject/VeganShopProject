@@ -13,6 +13,9 @@
 		<typeAlias alias="adminqaa" type="com.vegan.admin.qaa.biz.AdminQaaBoardVO"/>
   		<typeAlias alias="adminfaq" type="com.vegan.admin.faq.biz.AdminFaqBoardVO"/>
 		<typeAlias alias="faq" type="com.vegan.user.faq.biz.faqBoardVO"/>
+  		<typeAlias alias="basket" type="com.vegan.user.basket.dao.BasketVO"/>		
+		<typeAlias alias="order" type="com.vegan.user.order.biz.OrderBoardVO"/>
+  	
   	</typeAliases>
   	
   	<!-- Sql Mapper 설정 -->
@@ -24,6 +27,8 @@
 		<mapper resource="mappings/adminqaa-mapping.xml"/>
 		<mapper resource="mappings/adminFaq-mapping.xml"/>
 		<mapper resource="mappings/faq-mapping.xml"/>
+		<mapper resource="mappings/basket-mapping.xml"/>
+		<mapper resource="mappings/order-mapping.xml"/>
   	</mappers>
   
 </configuration>
