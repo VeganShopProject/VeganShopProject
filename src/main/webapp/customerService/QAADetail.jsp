@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -151,10 +152,11 @@
 					<th>내용</th>
 					<td colspan="2"><textarea name="content" id="content">${qaa.content }</textarea></td>
 				</tr>
-	<%-- 			<tr>
+				<c:if test='${qaa.image != ""}'>
+				<tr>
 					<th>첨부파일</th>
-					<td colspan="2"><img src="/uploadQaa/${qaa.image }"></td>
-				</tr> --%>
+					<td colspan="2"><img src="${qaa.image }" width="300" height="200"/></td>
+				</tr> </c:if>
 				<tr>
 					<th >등록일</th>
 					<td colspan="2">${qaa.qaa_date }</td>

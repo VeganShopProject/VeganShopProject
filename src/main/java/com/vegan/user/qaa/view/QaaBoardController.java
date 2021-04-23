@@ -36,7 +36,7 @@ public class QaaBoardController {
 		if(!uploadFile.isEmpty()) { 
 			String fileName = uploadFile.getOriginalFilename(); //현재 첨부된 파일의 이름을 반환
 			uploadFile.transferTo(new File(fileSaveFolder+fileName)); //입력으로 
-			vo.setImage(fileName);
+			vo.setImage("./uploadQaa/"+fileName);
 		}else {
 			vo.setImage("");
 		}

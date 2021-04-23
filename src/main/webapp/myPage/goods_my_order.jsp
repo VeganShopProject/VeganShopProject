@@ -64,7 +64,7 @@
 					<td height="20">${order.order_tradenum}</td>
 					<td height="20">${order.order_goods_name}</td>
 					<td><font size="2"><img
-							src="/board/resources/image/${order.order_goods_image}" width=50 height=50></font>
+							src="${order.order_goods_image}" width=50 height=50></font>
 					</td>
 					<td>${order.order_goods_count}</td>
 					<td><fmt:formatNumber value="${order.order_goods_price}" pattern="#,###" /><td>

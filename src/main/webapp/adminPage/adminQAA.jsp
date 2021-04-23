@@ -147,9 +147,9 @@ h1{
 			<td><fmt:formatDate value="${board.qaa_date}" pattern="yyyy-MM-dd"/></td>
 		</tr>
 		</c:forEach> 
-		<tr><td colspan="5"><br><br></td></tr>
+		
 	</table>
-	
+	<br><br><br><br>
 </div>	
 </body>
 </html>

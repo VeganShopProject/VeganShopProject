@@ -106,7 +106,7 @@ CREATE TABLE BASKET
     REG_DATE  DATE, -- 장바구니에 담긴 일자
     PRIMARY KEY (MEMBER_SEQ, GOODS_SEQ) -- 회원 seq,상품 seq는 고유값으로 지정
 );
-
+select * from basket
 --결제
 DROP TABLE GOODS_ORDER purge;
 CREATE TABLE GOODS_ORDER(
@@ -140,24 +140,9 @@ CREATE TABLE GOODS_ORDER(
 
 );
 
-drop table checkout_temp_lolo purge
+
 
 select * from goods_order;
 
-select * from basket
 
 
-		SELECT
-			O.ORDER_NUM		AS order_num,
-			O.ORDER_TRADENUM		AS order_tradenum,
-			O.ORDER_GOODS_NAME	AS order_goods_name,
-			O.ORDER_GOODS_IMAGE		AS order_goods_image,
-			O.ORDER_GOODS_PRICE		AS order_goods_price,
-			O.ORDER_GOODS_COUNT		AS order_goods_count,
-			O.ORDER_MEMBER_ID		AS order_member_id,
-			O.ORDER_SUM_MONEY		AS order_sum_money,
-			O.ORDER_STATUS		AS order_status,
-			O.ORDER_DATE		AS order_date
-		FROM GOODS_ORDER O 
-		WHERE O.ORDER_MEMBER_SEQ = 1
-		

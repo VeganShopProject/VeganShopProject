@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<style>
-	a {color: inherit; text-decoration: none;}
+a {color: inherit; text-decoration: none;}
 	* {box-sizing: border-box;}
 	body {
 		margin: 0 auto;
