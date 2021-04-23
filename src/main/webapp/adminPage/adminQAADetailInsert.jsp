@@ -10,7 +10,7 @@
 <style>
 * {box-sizing: border-box;}
 a {color: inherit; text-decoration: none;}
-* {box-sizing: border-box;}
+
 body {
 	margin: 0 auto;
 	font-family: Arial, Helvetica, sans-serif;
@@ -107,7 +107,7 @@ input[type=button] {
  	 <form action="insertReply.aq?re_ref=${adminqaa.re_ref }" method="post" id="qaaAdminDetail" enctype="multipart/form-data" name="qaaAdminDetail">
          
          <label for="title">답변 내용</label><br>
-		<textarea rows="10" cols="105%"  id="content" name="content"></textarea><br>
+		<textarea rows="10" style="resize: none; width: 100%;"  id="content" name="content"></textarea><br>
 		
 		
     	<input type="button" onclick="location.href='/board/getBoardList.aq'" value="글 목록"/>
@@ -116,9 +116,9 @@ input[type=button] {
           <input type="submit" value="답변 등록" />  
         <br><br> 
  	</form>
- 	   </div>
+ </div>
 
-</div>
+
 
 
 </body>

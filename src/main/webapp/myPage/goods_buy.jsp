@@ -45,7 +45,7 @@
 							
 						</td>
 						<td style="font-family: Tahoma; font-size: 8pt;">
-							<img src="./goodsupload/${ck.order_goods_image}" width=50 height=50>
+							<img src="${ck.order_goods_image}" width=50 height=50>
 							
 						</td>
 						<td style="font-family: Tahoma; font-size: 8pt;">${ck.order_goods_name}
