@@ -62,6 +62,27 @@ input[type=submit]:hover {
 	background-color: #213429;
 	color: #ffffff;;
 }
+	input[type=button] {
+		width: 13%;
+		color: #ffffff;
+		padding: 5px 11px;
+		margin: 8px 0;
+		float: right;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 17px;
+		background-color: #213429;
+	}
+	input[type=button]:hover{
+		background-color: #213429;
+		color: #fffff;
+	}
+	input[type=submit], input[type=button]{
+		display: inline;
+		margin: 10px;
+		float: right;
+	}
 
 </style>
 <script type="text/javascript">
@@ -100,9 +121,10 @@ input[type=submit]:hover {
 		<label for="title">제목</label><br>
 		<textarea rows="2" cols="105%" id="title" name="title" placeholder="자주하는 질문을 적으세요."></textarea><br>
 		<label for="writer">작성자</label><br>
-		<input type="text" id="writer" name="writer" placeholder="관리자"><br>
+		<input type="text" id="writer" name="writer" value="관리자" readonly><br>
 		<label for="content">내용</label><br>
 		<textarea rows="7" cols="105%" id="content" name="content" placeholder="내용을 적으세요."></textarea><br>
+		 <input type="button" onclick="location.href='/board/getBoardList.fa'" value="글목록"/>
 		<input type="submit" value="등록" >
 	</form>
 </div>

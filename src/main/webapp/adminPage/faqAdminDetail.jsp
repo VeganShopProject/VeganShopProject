@@ -108,11 +108,11 @@
  	 <form id="faqAdmindetail" name="faqAdmindetail" action="/board/updateBoard.fa" method="post" enctype="multipart/form-data">
          <input name="seq" type="hidden" value="${board.seq}" />
          <label for="title">제목</label><br>
-		<textarea rows="2" cols="105%"  id="title" name="title">${board.title}</textarea><br>
+		<textarea style="resize: none; width: 100%;" rows="2" id="title" name="title">${board.title}</textarea><br>
 		<label for="writer">작성자</label>
-		<input type="text" id="writer" name="writer" value="${board.writer}">
+		<input type="text" id="writer" name="writer" value="${board.writer}" readonly>
 		<label for="content">내용</label>
-    	<br><textarea rows="10" cols="105%"  id="content" name="content">${board.content}</textarea><br>
+    	<br><textarea rows="10"  style="resize: none; width: 100%;"  id="content" name="content">${board.content}</textarea><br>
     	
     
 	     <input type="button" onclick="location.href='/board/getBoardList.fa'" value="글목록"/>

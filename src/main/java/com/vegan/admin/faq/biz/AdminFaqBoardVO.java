@@ -2,6 +2,8 @@ package com.vegan.admin.faq.biz;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class AdminFaqBoardVO {
 	
 	private int seq;
