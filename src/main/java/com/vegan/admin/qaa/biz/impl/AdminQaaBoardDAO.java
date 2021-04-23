@@ -29,7 +29,7 @@ public class AdminQaaBoardDAO {
 	}
 	
 	public void deleteReply(AdminQaaBoardVO vo) {
-		
+		mybatis.update("AdminQaaBoardDAOTemp.updateStatus2", vo);
 		mybatis.delete("AdminQaaBoardDAOTemp.deleteReply", vo);
 		
 	}

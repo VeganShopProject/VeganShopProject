@@ -32,6 +32,11 @@
 					<th>내용</th>
 					<td colspan="2" name="content" id="content">${qaa.content }</td>
 				</tr>
+				<c:if test='${qaa.image != null}'>
+				<tr>
+					<th>첨부파일</th>
+					<td colspan="2"><img src="${qaa.image }" width="300" height="200"/></td>
+				</tr> </c:if>
 				<tr>
 					<th >등록일</th>
 					<td colspan="2">${qaa.qaa_date }</td>

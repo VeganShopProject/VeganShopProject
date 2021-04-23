@@ -17,6 +17,12 @@
 		]]>
 	</update>
 	
+		<update id="updateStatus2">
+		<![CDATA[	
+			update QAA set status='등록 완료' where re_ref=#{re_ref}
+		]]>
+	</update>
+	
 	
 	<update id="updateBoard">
 		<![CDATA[	
