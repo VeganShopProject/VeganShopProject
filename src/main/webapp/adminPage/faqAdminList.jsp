@@ -38,7 +38,11 @@ h1{
   border-collapse: collapse;
   width: 100%;
 }
-#faq td, #adminfaq th {
+#title, #content{
+	padding: 8px;
+	text-align: left;
+}
+#faq td:not(#title):not(#content), #faq th {
   padding: 8px;
   text-align: center;
 }
@@ -104,9 +108,10 @@ h1{
 		<tr>
 		<c:set var="contentResult" value="${board.content }"/>
 		<c:set var="dot" value="..."/>
-			<td>${board.seq }</td>
-			<td><a href="getBoard.fa?seq=${board.seq }">${board.title }</a></td>
-			<td>${fn:substring(contentResult,0,56)}${dot }</td>
+		<c:set var="count" value="${count +1}"/>
+			<td>${count}</td>
+			<td id="title"><a href="getBoard.fa?seq=${board.seq }" >${board.title }</a></td>
+			<td id="content">${fn:substring(contentResult,0,56)}${dot }</td>
 			<td>${board.writer}</td>
 			<td><fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd"/></td>
 		</tr>
