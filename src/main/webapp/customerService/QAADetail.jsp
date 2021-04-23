@@ -152,7 +152,7 @@
 					<th>내용</th>
 					<td colspan="2"><textarea name="content" id="content">${qaa.content }</textarea></td>
 				</tr>
-				<c:if test='${qaa.image != ""}'>
+				<c:if test='${qaa.image != null}'>
 				<tr>
 					<th>첨부파일</th>
 					<td colspan="2"><img src="${qaa.image }" width="300" height="200"/></td>

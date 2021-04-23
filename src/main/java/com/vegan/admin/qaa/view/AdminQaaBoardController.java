@@ -55,8 +55,9 @@ public class AdminQaaBoardController {
 	
 	@RequestMapping("/deleteReply.aq")
 	public String deleteReply(@ModelAttribute("reply") AdminQaaBoardVO vo) {
-		System.out.println("글 삭제 처리");
+		System.out.println("답글 삭제 처리");
 		System.out.println(vo.getSeq());
+		System.out.println(vo.getRe_ref());
 		boardService.deleteReply(vo);		
 		return "redirect:getBoardList.aq";
 	}

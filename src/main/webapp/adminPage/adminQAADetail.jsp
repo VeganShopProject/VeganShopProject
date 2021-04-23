@@ -25,7 +25,7 @@
     	<textarea rows="10" style="resize: none; width: 100%;" id="content" name="content" readonly>${adminqaa.content }</textarea><br>
     	<label for="date">등록일</label>
 		<input type="text" id="date" name="date" value="${adminqaa.qaa_date }" readonly/>
-		<c:if test='${adminqaa.image != ""}'>
+		<c:if test='${adminqaa.image != null}'>
 	 	    <label for="image">이미지</label><br>
 		    <img src="${adminqaa.image }" width="300" height="200"/><br><br>
 		</c:if>

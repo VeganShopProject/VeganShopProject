@@ -109,6 +109,7 @@ a {color: inherit; text-decoration: none;}
 <h3 align="center">문의 답변</h3>
  	 <form action="/board/updateReply.aq" method="post" id="qaaAdminDetail" enctype="multipart/form-data" name="qaaAdminDetail">
          <input type="hidden" name="seq" value="${reply.seq }"/>
+         
          <label for="title">답변 내용</label><br>
 		<textarea rows="10" cols="105%"  id="content" name="content">${reply.content}</textarea><br>
 		<label for="date">답변 등록일</label>
@@ -116,7 +117,7 @@ a {color: inherit; text-decoration: none;}
 		
     	<input type="button" onclick="location.href='/board/getBoardList.aq'" value="글 목록"/>
     	 <input type="button" onclick="location.href='/board/deleteBoard.aq?re_ref=${reply.re_ref}'" value="문의 삭제" id="deleteBoard"/>
-    	<input type="button" onclick="location.href='/board/deleteReply.aq?seq=${reply.seq }'" value="답글 삭제" id="deleteReply"/>
+    	<input type="button" onclick="location.href='/board/deleteReply.aq?seq=${reply.seq }&re_ref=${reply.re_ref}'" value="답글 삭제" id="deleteReply"/>
 	    
 	     
           <input type="submit" value="답글 수정" />  
