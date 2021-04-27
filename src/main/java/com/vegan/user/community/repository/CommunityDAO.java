@@ -22,13 +22,22 @@ public class CommunityDAO {
 	public List<CommunityVO> getCmntList(CommunityVO vo) { 
 //		System.out.println("getCmntList()가 실행됐습니다.");
 		
-		if(vo.getSearchCondition().equals("SUBJECT")) { //제목을 선택한 경우 
+		//select 필터링
+		if(vo.getCategory().equals("전체")) {
+			return myBatis.selectList("CommunityDAOTemp.getCmntList_S", vo);
+		}else if(vo.getCategory().equals("레시피")) {
+			return myBatis.selectList("CommunityDAOTemp.getCmntList_RP", vo);
+		}else if(vo.getCategory().equals("식당 정보")) {
+			return myBatis.selectList("CommunityDAOTemp.getCmntList_RT", vo);
+		}
+		//검색
+		else if(vo.getSearchCondition().equals("SUBJECT")) { //제목을 선택한 경우 
 			return myBatis.selectList("CommunityDAOTemp.getCmntList_S", vo);
 		}else if(vo.getSearchCondition().equals("CONTENT")) { //내용을 선택한 경우
 			return myBatis.selectList("CommunityDAOTemp.getCmntList_C", vo);
 		}else { //아무것도 선택하지 않는 경우(제목으로 예외처리)
 			return myBatis.selectList("CommunityDAOTemp.getCmntList_S", vo);
-		}
+		} 
 	}
 	
 	//글의 총 개수 
@@ -43,7 +52,7 @@ public class CommunityDAO {
 	
 	//커뮤니티 글 상세 조회
 	public CommunityVO getCmnt(CommunityVO vo) { 
-		System.out.println("getCmnt()가 실행됐습니다.");
+//		System.out.println("getCmnt()가 실행됐습니다.");
 		return myBatis.selectOne("CommunityDAOTemp.getCmnt", vo);
 	}
 
@@ -57,6 +66,11 @@ public class CommunityDAO {
 	public void deleteCmnt(CommunityVO vo) { 
 		System.out.println("deleteCmnt()가 실행됐습니다.");
 		myBatis.delete("CommunityDAOTemp.deleteCmnt", vo);
+	}
+	
+	public void updateReply_content(CommunityVO vo) {
+		System.out.println("updateReply_content()가 실행됐습니다.");
+		myBatis.update("CommunityDAOTemp.updateReply_content", vo);
 	}
 	
 }

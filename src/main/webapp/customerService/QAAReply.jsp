@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/resources/css/main1.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	body {
 	  font-family: Arial;
@@ -113,7 +114,8 @@
 </style>
 </head>
 <body>
-
+<jsp:include page="/main/header.jsp" />
+<jsp:include page="/main/banner.jsp" />
 
 	<div class="main">
 		<div class="title_wrap clfix">
@@ -136,7 +138,8 @@
 	
 	<%@ include file="QAAReplyDetail.jsp" %>		
 	
-	
+<jsp:include page="/main/footer.jsp" />
+
 	<script type="text/javascript">
 		
 

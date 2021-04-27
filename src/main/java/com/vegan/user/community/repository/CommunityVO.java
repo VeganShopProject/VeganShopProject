@@ -24,14 +24,17 @@ public class CommunityVO {
 	private String searchCondition; //검색 기능을 위한 필드
 	private String searchKeyword; //검색 기능을 위한 필드
 	
+	//댓글 관련 필드
+	private String reply_content;
+	
 	//페이징 관련 필드
-	private int nowPage; //현재 페이지
-	private int maxPage; //최대 페이지 수
-	private int startPage; //첫 페이지 수
-	private int endPage; //마지막 페이지 수
-	private int maxSeq; //전체 글 수
-	private int startSeq; //첫 행
-	private int endSeq; //끝 행
+//	private int nowPage; //현재 페이지
+//	private int maxPage; //최대 페이지 수
+//	private int startPage; //첫 페이지 수
+//	private int endPage; //마지막 페이지 수
+//	private int maxSeq; //전체 글 수
+//	private int startSeq; //첫 행
+//	private int endSeq; //끝 행
 	
 //	public CommunityVO() {
 //		//현재 페이지 수
@@ -131,67 +134,75 @@ public class CommunityVO {
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
 	}
-	public int getNowPage() {
-		return nowPage;
-	}
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-	public int getMaxPage() {
-		return maxPage;
-	}
-
-	public void setMaxPage(int maxPage) {
-		this.maxPage = maxPage;
-	}
-
-	public int getStartPage() {
-		return startPage;
-	}
-
-	public void setStartPage(int startPage) { 
-		this.startPage = startPage;
-	}
-
-	public int getEndPage() {
-		return endPage;
-	}
-
-	public void setEndPage(int endPage) { 
-		this.endPage = endPage;
-	}
-
-	public int getMaxSeq() {
-		return maxSeq;
-	}
-
-	public void setMaxSeq(int maxSeq) {
-		this.maxSeq = maxSeq;
-	}
+//	public int getNowPage() {
+//		return nowPage;
+//	}
+//
+//	public void setNowPage(int nowPage) {
+//		this.nowPage = nowPage;
+//	}
+//
+//	public int getMaxPage() {
+//		return maxPage;
+//	}
+//
+//	public void setMaxPage(int maxPage) {
+//		this.maxPage = maxPage;
+//	}
+//
+//	public int getStartPage() {
+//		return startPage;
+//	}
+//
+//	public void setStartPage(int startPage) { 
+//		this.startPage = startPage;
+//	}
+//
+//	public int getEndPage() {
+//		return endPage;
+//	}
+//
+//	public void setEndPage(int endPage) { 
+//		this.endPage = endPage;
+//	}
+//
+//	public int getMaxSeq() {
+//		return maxSeq;
+//	}
+//
+//	public void setMaxSeq(int maxSeq) {
+//		this.maxSeq = maxSeq;
+//	}
+//	
+//	public int getStartSeq() {
+//		return startSeq;
+//	}
+//
+//	public void setStartSeq(int startSeq) {
+//		this.startSeq = startSeq;
+//	}
+//
+//	public int getEndSeq() {
+//		return endSeq;
+//	}
+//
+//	public void setEndSeq(int endSeq) {
+//		this.endSeq = endSeq;
+//	}
 	
-	public int getStartSeq() {
-		return startSeq;
+	public String getReply_content() {
+		return reply_content;
 	}
-
-	public void setStartSeq(int startSeq) {
-		this.startSeq = startSeq;
-	}
-
-	public int getEndSeq() {
-		return endSeq;
-	}
-
-	public void setEndSeq(int endSeq) {
-		this.endSeq = endSeq;
+	public void setReply_content(String reply_content) {
+		this.reply_content = reply_content;
 	}
 	
 	@Override
 	public String toString() {
-		return "seq : "+seq+", category : "+category+", writer : "+writer+", subject : "+subject+", file : "+file+", cmnt_file : "+cmnt_file+", "
-				+ "content : "+content+", cmnt_date : "+cmnt_date+", readcount : "+readcount+"\n"
-				+ "nowPage : "+nowPage+", maxPage : "+maxPage+", startPage : "+startPage+", endPage : "+endPage+", maxSeq : "+maxSeq+", startSeq : "+startSeq+", endSeq : "+endSeq;
+		return "seq : "+seq+", category : "+category+", writer : "+writer+", subject : "+subject+", file : "+file+", cmnt_file : "+cmnt_file
+				+ ", content : "+content+", cmnt_date : "+cmnt_date+", readcount : "+readcount+"\n"
+//				+ ", nowPage : "+nowPage+", maxPage : "+maxPage+", startPage : "+startPage+", endPage : "+endPage+", maxSeq : "+maxSeq+", startSeq : "+startSeq+", endSeq : "+endSeq
+				+ ", reply_content : "+reply_content;
 	}
 	
 }

@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+table {
+	padding: 10;
+	border-spacing:0;
+	width: 1000px; height:500px;
+}
+
+#title {
+	vertical-align: top; align-content:left;
+	column-span: 6;
+	font-size: 16pt;
+}
+
+#category { /* 카테고리 폰트 색깔 */
+	border-top: 1px solid #BDBDBD;
+	background-color: #F0F0ED; color: #848484;
+	width: 100px;}
+	
+#categoryLast { /* 윤곽선 위, 아래+폰트 색깔 */
+	border-top: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+	color: #848484; 
+	background-color: #F0F0ED;}
+	
+#content { /* 윤곽선 위만 */
+	border-top: 1px solid #BDBDBD; 
+	column-span: 3;
+	width: 150px;}	
+	
+#contentLast { /* 윤곽선 위,아래 */
+	border-top: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+	column-span: 3;}
+	
+#text { /* 내용 */
+	column-span: 4;
+	height: 200px;
+	vertical-align: top;
+}	
+	
+#comment { /* 댓글 */
+	background-color: #F0F0ED;
+	text-align: left;
+	padding: 15px; 
+	width: 1000px; height: 120px;}
+	
+#style { /* 댓글 input */
+	width: 150px; padding: .5em .3em;
+	border: 1px solid #CACAC6;
+	font-family: inherit; font-size: 2;
+	border-radius: 5px; appearance: none; 
+	-webkit-appearance: none; -moz-appearance: none;}
+	
+textarea { /* 댓글 본문 */
+	padding: .5em .3em;
+	border: 1px solid #CACAC6;
+	font-family: inherit; font-size: 2;
+	border-radius: 5px; appearance: none; 
+	-webkit-appearance: none; -moz-appearance: none;}
+	
+#button_comment { /* 댓글 확인 버튼 */
+	width: 100px; height:50px;
+	padding: .5em .3em;
+	border: 1px solid #CACAC6;
+	font-family: inherit; font-size: 2;
+	background-color: OliveDrab; color:white;
+	border-radius: 5px; appearance: none; 
+	-webkit-appearance: none; -moz-appearance: none;
+	text-decoration: none; vertical-align: top;}	
+	
+#button_comment:hover{ /* 단추 hover */
+	background-color: white; 
+	color:OliveDrab;}
+	
+#button { /* 목록, 수정, 삭제 단추 */
+	width: 70px; padding: .5em .3em;
+	border: 1px solid #CACAC6;
+	font-family: inherit; font-size: 2;
+	background-color: OliveDrab; color:white;
+	border-radius: 5px; appearance: none; 
+	-webkit-appearance: none; -moz-appearance: none;
+	vertical-align: top; align-content:right;
+	column-span: 4;}	
+	
+#button:hover{ /* 단추 hover */
+	background-color: white; 
+	color:OliveDrab;}	
+	
+#fontColor {
+	color:#848484;
+	padding: 10px; border-spacing:10px;}

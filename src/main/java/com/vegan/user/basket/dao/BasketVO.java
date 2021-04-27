@@ -17,6 +17,7 @@ public class BasketVO {
 
 	// 회원
 	private String memberName;
+	private String memberId;
 
 
 	public int getMemberSeq() {
@@ -89,6 +90,14 @@ public class BasketVO {
 
 	public void setGoodsAmount(int goodsAmount) {
 		this.goodsAmount = goodsAmount;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	
 

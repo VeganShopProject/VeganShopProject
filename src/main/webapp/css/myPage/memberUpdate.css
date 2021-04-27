@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+#together {
+	background-color: #243421;
+	width: 100%; height: 150px;
+	position: relative; 
+}
+
+#first {
+	padding: 10px; border-spacing:10px;
+	background-color: white;
+	width: 400px; height: 100px;
+	position: absolute; top: 10px; left: 200px;
+}
+
+#second {
+	padding: 10px; border-spacing:10px;
+	background-color: white;
+	width: 450px; height: 100px;
+	position: absolute; top: 10px; left: 650px;
+}
+
+#third {
+	padding: 10px; border-spacing:10px;
+	background-color: white;
+	width: 500px; height: 100px;
+	position: absolute; top: 10px; left: 1150px;
+}
+
+table {
+	padding: 0; border-spacing: 0;
+}
+
+b {
+	font-size: 20pt;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+#hover:hover {
+	background-color: #FAFAFA;
+	color: white;
+}
+
+#sidebar {
+	float: left;
+	width: 200px; height: 100%;
+}
+
+#sideTable {
+	height: 100%;
+}
+
+#title {
+	text-align: left;
+}
+
+#category { /* 카테고리 */
+	border-top: 1px solid #BDBDBD;
+	background-color: #FAFAFA; color: #424242;
+	width: 100px; font-size: 10pt;}
+	
+#categoryLast { /* 윤곽선 위, 아래+폰트 색깔 */
+	border-top: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+	background-color: #FAFAFA; color: #848484;
+	font-size: 10pt;}
+	
+#content { /* 윤곽선 위만 */
+	border-top: 1px solid #BDBDBD; 
+	column-span: 3;
+	width: 150px;}	
+	
+#contentLast { /* 윤곽선 위,아래 */
+	border-top: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+	column-span: 3;}
+
+#fontSize {
+	font-size: 15pt;
+}
+
+#form {
+	text-align: center;
+	width: 80%
+}
+
+#button { /* input 단추 */
+	width: 70px; padding: .5em .3em;
+	border: 1px solid #CACAC6;
+	font-family: inherit; font-size: 2;
+	background-color:#213429; color:white;
+	border-radius: 5px; appearance: none; 
+	-webkit-appearance: none; -moz-appearance: none;}
+
+#button:first-child { /* 개인정보 수정 */
+	width: 100px;}
+
+#button:nth-child(2) { /* 취소 */
+	background-color: white; color: #213429;}
+	
+#button:nth-child(3) { /* 탈퇴하기 */
+	background-color: white; color: #213429; 
+	width: 100px;}
+	
+#button:hover { /* 회원정보 수정 단추 hover */
+	background-color: white; color: #213429; } 
+	
+#buttons {
+	column-span: 2;}

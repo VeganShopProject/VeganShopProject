@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+#together {
+	background-color: #243421;
+	width: 100%; height: 150px;
+	position: relative; 
+}
+
+#first {
+	padding: 10px; border-spacing:10px;
+	background-color: white;
+	width: 400px; height: 100px;
+	position: absolute; top: 10px; left: 200px;
+}
+
+#second {
+	padding: 10px; border-spacing:10px;
+	background-color: white;
+	width: 450px; height: 100px;
+	position: absolute; top: 10px; left: 650px;
+}
+
+#third {
+	padding: 10px; border-spacing:10px;
+	background-color: white;
+	width: 500px; height: 100px;
+	position: absolute; top: 10px; left: 1150px;
+}
+
+b {
+	font-size: 20pt;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+#hover:hover {
+	background-color: gray;
+	color: white;
+}
+
+#category {
+	float: left;
+	width: 200px;
+}
+
+#content {
+	text-align: left;
+}
+
+#fontSize {
+	font-size: 15pt;
+}
+
+#form {
+	text-align: center;
+}
+
+#button { /* input 단추 */
+	width: 70px; padding: .5em .3em;
+	border: 1px solid #CACAC6;
+	font-family: inherit; font-size: 2;
+	background-color:#213429; color:white;
+	border-radius: 5px; appearance: none; 
+	-webkit-appearance: none; -moz-appearance: none;}
+	
+#button:hover { /* input 단추 hover */
+	background-color: white;
+	color: #213429;}

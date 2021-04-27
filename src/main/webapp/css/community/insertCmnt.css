@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+table { /* 테이블 */
+	padding: 10px;
+	border-spacing: 0px;
+	width: 1000px;
+	height: 500px;
+}
+
+#title {
+	text-align: center;
+	column-span: 6;
+	font-size: 16pt;
+}
+
+#category { /* 카테고리 폰트 색깔 */
+	border-top: 1px solid #BDBDBD;
+	color: #848484; 
+	background-color: #F0F0ED;
+	text-align: center;
+	width: 100px;}
+	
+#categoryLast { /* 윤곽선 위, 아래+폰트 색깔 */
+	border-top: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+	color: #848484; 
+	background-color: #F0F0ED;
+	text-align: center;
+	width: 100px;}
+	
+#content { /* 윤곽선 위만 */
+	border-top: 1px solid #BDBDBD;
+	text-align: left; }	
+
+#contentLast { /* 윤곽선 위,아래 */
+	border-top: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
+	text-align: left;}
+
+#button { /* input 단추 */
+	width: 70px; padding: .5em .3em;
+	border: solid 1px #CACAC6; font-family: inherit; font-size: 2;
+	background-color: OliveDrab; color:white;
+	border-radius: 5px; appearance: none; 
+	-webkit-appearance: none; -moz-appearance: none;}
+	
+#button:hover{ /* 단추 hover */
+	background-color: white; 
+	color:OliveDrab;}
+	

@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>기본 에러 화면(ArithmeticException)</title>
+<link href="${pageContext.request.contextPath}/resources/css/main1.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	.main {
 		position: absolute;
@@ -75,6 +76,8 @@
 
 </head>
 <body> 
+		<jsp:include page="/main/header.jsp" />
+	<jsp:include page="/main/banner.jsp" />
 	<div class="main">
 		<table>
 		<tr>
@@ -95,5 +98,7 @@
 			<a href="javascript:history.go(-1)">돌아가기</a>
 		</div>
 	</div>
+	
+<jsp:include page="/main/footer.jsp" />
 </body>
 </html>

@@ -19,9 +19,15 @@ public class MemberDAO {
 	}
 	
 	//회원 로그인
-	public void memberLogin(MemberVO vo) { 
+	public String memberLogin(MemberVO vo) { 
 		System.out.println("memberLogin()가 실행됐습니다.");
-		myBatis.selectOne("MemberDAOTemp.idCheck", vo);
+		return myBatis.selectOne("MemberDAOTemp.memberLogin", vo);
+	}
+	
+	//회원 탈퇴
+	public void memberOut(MemberVO vo) {
+		System.out.println("memberOut()가 실행됐습니다.");
+		myBatis.delete("MemberDAOTemp.memberOut", vo);
 	}
 	
 	//아이디 중복확인
@@ -73,7 +79,7 @@ public class MemberDAO {
 		myBatis.update("MemberDAOTemp.updateMember", vo);
 	}
 
-	//회원 정보 삭제
+	//회원 정보 탈퇴
 	public void deleteMember(MemberVO vo) { 
 		System.out.println("deleteMember()가 실행됐습니다.");
 		myBatis.delete("MemberDAOTemp.deleteMember", vo);

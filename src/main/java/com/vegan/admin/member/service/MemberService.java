@@ -7,7 +7,8 @@ import com.vegan.admin.member.repository.ZipcodeVO;
 
 public interface MemberService { //회원 관리
 	public void insertMember(MemberVO vo); //회원 가입
-	public void memberLogin(MemberVO vo); //회원 로그인
+	public String memberLogin(MemberVO vo); //회원 로그인
+	public void memberOut(MemberVO vo); //회원 탈퇴
 	public Integer idCheck(MemberVO vo); //아이디 중복확인
 	public String findMember(MemberVO vo); //아이디/비밀번호 찾기
 	public List<ZipcodeVO> searchZipcode(ZipcodeVO vo); //우편번호 검색
@@ -15,5 +16,5 @@ public interface MemberService { //회원 관리
 	public List<MemberVO> getMemberList(MemberVO vo); //회원 목록 조회
 	public MemberVO getMember(MemberVO vo); //회원 정보 상세 검색
 	public void updateMember(MemberVO vo); //회원 정보 수정
-	public void deleteMember(MemberVO vo); //회원 정보 삭제
+	public void deleteMember(MemberVO vo); //회원 정보 탈퇴
 }

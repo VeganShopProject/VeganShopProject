@@ -3,6 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+    <!-- 바로 메인으로 이동 -->
+	<welcome-file-list>
+		<welcome-file>main/main.jsp</welcome-file>
+	</welcome-file-list>
+
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -136,25 +141,7 @@
 		<servlet-name>adminServlet</servlet-name>
 		<url-pattern>*.ad</url-pattern>
 	</servlet-mapping>
-	
-	
-	<!-- 지은, 경화 -->
-	<servlet>
-		<servlet-name>goodsAppServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
 		
-	<servlet-mapping>
-		<servlet-name>goodsAppServlet</servlet-name>
-		<url-pattern>*.go</url-pattern>
-	</servlet-mapping>
-	
-	
 	<!-- 임종두 -->
 	
 	<servlet>
@@ -185,6 +172,36 @@
 	<servlet-mapping>
 		<servlet-name>faqAdminAppServlet</servlet-name>
 		<url-pattern>*.fa</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>goodsAppServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>goodsAppServlet</servlet-name>
+		<url-pattern>*.go</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>recipeAppServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>recipeAppServlet</servlet-name>
+		<url-pattern>*.re</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

@@ -7,8 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 페이지</title>
+<link href="${pageContext.request.contextPath}/resources/css/main1.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<jsp:include page="/main/header.jsp" />
+<jsp:include page="/main/banner.jsp" />
 	<table width="960" cellspacing="0" cellpadding="0" border="0" align="center">
 		<tr>
 			<td colspan=2 align=right>
@@ -45,7 +48,7 @@
 							
 						</td>
 						<td style="font-family: Tahoma; font-size: 8pt;">
-							<img src="${ck.order_goods_image}" width=50 height=50>
+							<img src="/board/GoodsUpload/${ck.order_goods_image}" width=50 height=50>
 							
 						</td>
 						<td style="font-family: Tahoma; font-size: 8pt;">${ck.order_goods_name}
@@ -106,7 +109,7 @@
 							<td style="font-family: Tahoma; font-size: 8pt;" height=24
 								bgcolor="f7f7f7">휴대폰</td>
 							<td width=320 height=24>
-								<font size=2>${checkout_member.order_receive_mobile}</font>
+								<font size=2>${checkout_member.order_receive_phone}</font>
 							</td>
 						</tr>
 						<tr>
@@ -161,17 +164,7 @@
 						<tr>
 							<td style="background-color: #F0F0F0; height: 1px;" colspan=6>
 						</tr>
-						<tr height=20>
-							<td style="font-family: Tahoma; font-size: 8pt;" width=130 height=24
-								bgcolor="f7f7f7">휴대폰</td>
-							<td style="font-family: Tahoma; font-size: 8pt;">
-								<input type="text" name="order_receive_mobile" size=15
-								value="${checkout_member.order_receive_mobile}">
-							</td>
-						</tr>
-						<tr>
-							<td style="background-color: #F0F0F0; height: 1px;" colspan=6>
-						</tr>
+						
 						<tr height=20>
 							<td style="font-family: Tahoma; font-size: 8pt;" width=130 height=24
 								bgcolor="f7f7f7">배송지 우편번호</td>
@@ -268,7 +261,7 @@
 			</td>
 		</tr>
 	</table>
-
+<jsp:include page="/main/footer.jsp" />
 	<script type="text/javascript" >
 	
 		// GET ALL THE LINKS WE WANT TO DO A POST ON

@@ -27,29 +27,40 @@ body {
 h1{
 	text-align: center;
 }
+img{
+	width: 100%;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 1px;
+  background-color: rgba(249, 225, 205, 0.35);
+  padding: 1px;
+}
 
+.grid-container > div {
+  background-color: rgba(249, 225, 205, 0.35);
+  border: 1px solid black;
+  text-align: center;
+  font-size: 30px;
+}
 </style>
 </head>
 
 <body>
 
 <script>
-	
 	function w3_open() {
 		document.getElementById("mySidebar").style.display = "block";	
 	}
 	function w3_close() {
   		document.getElementById("mySidebar").style.display = "none";
 	}
-	
 </script>
 
 <%@ include file="adminMainIncludeHeaderHamburger.jsp" %> 
 
 <div class="w3-container">
-<p>This sidebar is hidden by default, (style="display:none")</p>
-<p>You must click on the "hamburger" icon (top left) to open it.</p>
-<p>The sidebar will hide a part of the page content.</p>
 </div>
 
 </body>

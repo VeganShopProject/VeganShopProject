@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/resources/css/main1.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<jsp:include page="/main/header.jsp" />
+<jsp:include page="/main/banner.jsp" />
 	<table width="960" cellspacing="0" cellpadding="0" border="0" align="center">
 <tr>
 <td colspan=2>
@@ -93,5 +96,6 @@
 	</td>
 	</tr>
 </table>
+<jsp:include page="/main/footer.jsp" />
 </body>
 </html>
