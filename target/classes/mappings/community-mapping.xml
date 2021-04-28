@@ -5,14 +5,20 @@
 <mapper namespace="CommunityDAOTemp">
 
 	<insert id="insertCmnt"> 
-		<![CDATA[ insert into community(seq, category, writer, subject, content, cmnt_file, readcount, re_seq )
-						values((select nvl(max(seq),0)+1 from community), #{category}, #{writer}, #{subject}, #{content}, #{cmnt_file}, #{readcount}, (select nvl(max(re_seq),0)+1 from community)) ]]> 
+		<![CDATA[ insert into community(seq, category, writer, subject, content, cmnt_file, readcount )
+						values((select nvl(max(seq),0)+1 from community), #{category}, #{writer}, #{subject}, #{content}, #{cmnt_file}, #{readcount}) ]]> 
 	</insert>
 
 	<!-- 조회수 업데이트 -->
 	<update id="updateReadcount">
 		<![CDATA[ update community 
 						set readcount=readcount+1 where seq=#{seq} ]]>
+	</update>
+	
+	<!-- 댓글 추가 -->
+	<update id="updateReply_content">
+		<![CDATA[ update community 
+						set reply_content=#{reply_content} where seq=#{seq} ]]>
 	</update>
 
 	<select id="getCmnt" resultType="community">
@@ -37,10 +43,20 @@
 						 where content like '%'||#{searchKeyword}||'%' 
 						 order by seq desc ]]>
 	</select>
+
+	<!-- select(레시피) -->
+	<select id="getCmntList_RP" resultType="community">
+		<![CDATA[ select * from community where category='레시피' order by seq desc ]]>
+	</select>
 	
-	<update id="updateCmnt">
+	<!-- select(식당 정보) -->
+	<select id="getCmntList_RT" resultType="community">
+		<![CDATA[ select * from community where category='식당 정보' order by seq desc ]]>
+	</select>
+	
+	<update id="updateCmnt" >
 		<![CDATA[ update community 
-						set category=#{category}, subject=#{subject}, content=#{content} where seq=#{seq} ]]>
+						set subject=#{subject}, content=#{content} where seq=#{seq} ]]>
 	</update>
 	
 	<delete id="deleteCmnt">

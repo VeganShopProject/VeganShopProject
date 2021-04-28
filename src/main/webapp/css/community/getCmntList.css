@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+.under_line {
+	border-bottom: 2px solid #243421;
+	width:100%;
+}
+
+#main { 
+	width: 65%;
+	margin: 0 auto;
+	min-height: 1000px;
+	padding: 10% 0% 20%;
+}
+
+#sub {
+	background-color: white; color: #213421;
+}
+
+#sub h3{
+    font-size: 25px;
+    text-align:center;
+}
+
+ table {  
+	padding: 10px;
+	border-spacing: 0px;
+	background-color: white; color: #213421;
+	width:100%;
+} 
+
+.styled-select {
+  width: 100px;
+  height: 17px;
+  overflow: hidden;
+  overflow: -moz-hidden-unscrollable;
+  background: url(image/arrow.jpg) no-repeat right white;
+  display: inline-block;
+  position: relative;
+}
+
+.styled-select select {
+  background: transparent;
+  -webkit-appearance: none;
+  width: 100px;
+  font-size: 11px;
+  border: 0;
+  height: 17px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.chk_btn {
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 10px 15px;
+    background-color: #213421;
+    transition: all 0.3s;
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s;
+}
+
+.chk_btn:hover {
+    background-color: #649E64;
+}
+
+#title { /* 타이틀 */
+	text-align: center;
+	column-span: 6;
+	font-size: 16pt;
+}
+
+#content {
+	text-align: center;
+	border-top-color: #D7D7D2;
+	height: 30px;
+}
+
+#content:hover {
+	background-color: #213429;
+}
+
+#insertCmnt {
+	text-align: left;
+	column-span: 6;
+}
+
+#search {
+	column-span: 6;
+	text-align: center;
+}
+
+a { /* a태그  */
+	text-decoration: none; color: black;
+}
+	
+a:hover { /* a태그(글 제목) hover */
+	text-decoration: underline;
+}
+
+select {
+	/* background: url("image/arrow.jpg") no-repeat 95% 50%; */
+	background-color: white; color: #213421;
+	width: 70px; padding: .5em .3em;
+	border: 1px solid #CACAC6; border-radius: 5px; 
+	font-family: inherit; font-size: 2;
+	-webkit-appearance: none; -moz-appearance: none; appearance: none; 
+}	
+	
+#button { /* select 검색 */
+	width: 70px; padding: .5em .3em;
+	border: 1px solid #CACAC6; border-radius: 5px; 
+	font-family: inherit; font-size: 2;
+	-webkit-appearance: none; -moz-appearance: none; appearance: none; 
+	color: black;
+}
+	
+#wideButton {
+	width: 200px; padding: .5em .3em;
+	border: 1px solid #CACAC6; border-radius: 5px; 
+	font-family: inherit; font-size: 2;
+	-webkit-appearance: none; -moz-appearance: none; appearance: none; 
+}
+	
+#style { /* input 단추 */
+	width: 70px; padding: .5em .3em;
+	border: 1px solid #CACAC6;
+	font-family: inherit; font-size: 2;
+	background-color:#213429; color:white;
+	border-radius: 5px; appearance: none; 
+	-webkit-appearance: none; -moz-appearance: none;
+}
+	
+#style:hover { /* input 단추 hover */
+	background-color: white;
+	color: #213429;
+}
+
+#insertstyle { /* input 단추 */
+	width: 70px; padding: .5em .3em;
+	border: 1px solid #CACAC6;
+	font-family: inherit; font-size: 2;
+	background-color:#213429; color:white;
+	border-radius: 5px; appearance: none; 
+	-webkit-appearance: none; -moz-appearance: none;
+	align-content: right;
+}
+	
+#insertstyle:hover { /* input 단추 hover */
+	background-color: white;
+	color: #213429;
+}

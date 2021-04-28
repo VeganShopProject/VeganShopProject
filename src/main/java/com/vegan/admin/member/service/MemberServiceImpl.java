@@ -21,9 +21,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void memberLogin(MemberVO vo) { 
-		member.memberLogin(vo);
+	public String memberLogin(MemberVO vo) { 
+		return member.memberLogin(vo);
 	}	
+	
+	@Override
+	public void memberOut(MemberVO vo) {
+		member.memberOut(vo);
+	}
 
 	@Override
 	public Integer idCheck(MemberVO vo) {
@@ -32,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public List<ZipcodeVO> searchZipcode(ZipcodeVO vo) {
-		System.out.println("BoardServiceImpl : searchZipcode() 실행");
+//		System.out.println("BoardServiceImpl : searchZipcode() 실행");
 		return member.searchZipcode(vo);
 	}
 	
@@ -42,8 +47,13 @@ public class MemberServiceImpl implements MemberService {
 	}	
 	
 	@Override
-	public String findMember(MemberVO vo) {
-		return member.findMember(vo);
+	public MemberVO findMemberId(MemberVO vo) {
+		return member.findMemberId(vo);
+	}
+	
+	@Override
+	public MemberVO findMemberPw(MemberVO vo) {
+		return member.findMemberPw(vo);
 	}
 	
 	@Override
@@ -67,3 +77,4 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 }
+

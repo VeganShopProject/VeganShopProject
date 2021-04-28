@@ -59,6 +59,12 @@ public class OrderBoardServiceImpl implements OrderBoardService {
 		List<OrderBoardVO> list= boardDAO.getOrderList(vo);
 		return list;
 	}
+	
+	@Override
+	public int updateOrderStatus(OrderBoardVO vo) {
+		return boardDAO.updateOrderStatus(vo);
+	}
+
 
 	@Override
 	public void backOrder(OrderBoardVO vo) {

@@ -7,13 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>기본 에러 화면(NullPointerException)</title>
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+
+
 <style type="text/css">
 	.main {
-		position: absolute;
-		
-		left: 50%;
-		margin-left: -500px;
+		text-align: center;
+		margin: 100px auto;		
 		width: 1000px;
+		
+		
 	}
 	table {
 		text-align: center;
@@ -75,6 +78,8 @@
 
 </head>
 <body> 
+	<jsp:include page="/main/header.jsp" />
+	<jsp:include page="/main/banner.jsp" />
 	<div class="main">
 		<table>
 		<tr>
@@ -98,7 +103,7 @@
 	
 			
 
-	
+<jsp:include page="/main/footer.jsp" />
 	
 </body>
 </html>

@@ -1,5 +1,8 @@
 package com.vegan.user.order.view;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.vegan.user.order.biz.OrderBoardService;
@@ -27,7 +32,7 @@ public class OrderBoardController {
 	public String insertOrderListOnlyThis (OrderBoardVO vo, Model model, HttpSession session, HttpServletRequest request) {
 
 		
-		if(session.getAttribute("pw") == null) {
+		if(session.getAttribute("test") == null) {
 			session.setAttribute("seq", request.getParameter("seq"));
 			session.setAttribute("id", request.getParameter("id"));
 			session.setAttribute("order_goods_num", request.getParameter("order_goods_num"));
@@ -40,9 +45,12 @@ public class OrderBoardController {
 		vo.setOrder_goods_count(Integer.parseInt(session.getAttribute("order_goods_count").toString()));
 		
 		
-
+		
 		
 		boardService.prepareOrderOnly(vo);
+		
+		
+	
 		
 
 		return "/getOrderTmpList.od";	
@@ -77,6 +85,11 @@ public class OrderBoardController {
 		model.addAttribute("checkout", boardService.getOrderTmpList(vo));
 		model.addAttribute("checkout_member", boardService.getMemberInfo(vo));
 		
+		
+		session.removeAttribute("test");
+		session.removeAttribute("order_goods_num");
+		session.removeAttribute("order_goods_count");
+		
 		return "/myPage/goods_buy.jsp";
 	}
 	
@@ -96,9 +109,10 @@ public class OrderBoardController {
 	//결제내역 목록
 	@RequestMapping(value="/orderList.od", method = RequestMethod.POST)
 	public String getOrderList(OrderBoardVO vo, HttpSession session, Model model) {
-
+		System.out.println("2");
 		model.getAttribute("member");
 		vo.setOrder_member_seq((int) session.getAttribute("seq"));
+		System.out.println("3");
 
 		model.addAttribute("orderList", boardService.getOrderList(vo));
 		
@@ -106,8 +120,7 @@ public class OrderBoardController {
 	}
 	
 	@RequestMapping(value="/orderList.od", method = RequestMethod.GET)
-	public String getLogin(OrderBoardVO vo, HttpSession session, Model model) {
-
+	public String getLogin() {
 		
 		return "/myPage/orderLogin.jsp";
 	}
@@ -121,8 +134,23 @@ public class OrderBoardController {
 		
 		vo.setOrder_member_id(session.getAttribute("id").toString());
 		boardService.backOrder(vo);
-		return "/basketList.do";
+		return "/getGoodsList.go";
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping("/updateOrderStatus.do")
+	public Map<String, Object> updateOrderStatus(Model model, HttpSession session, @RequestBody OrderBoardVO vo) {
+		model.getAttribute("member");
+		Map<String, Object> respData = new HashMap<>();
+		vo.setOrder_member_seq(Integer.parseInt( session.getAttribute("seq").toString()));
+	
+		boardService.updateOrderStatus(vo);
+
+		respData.put("OK", true);
+
+		
+		return respData;
 	}
 }
 

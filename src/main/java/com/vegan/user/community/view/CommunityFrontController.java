@@ -2,9 +2,7 @@ package com.vegan.user.community.view;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -28,25 +26,35 @@ public class CommunityFrontController { //커뮤니티 게시판
 	@Autowired
 	private CommunityService communityService;
 	
+	//글 등록 페이지 호출
+	@RequestMapping("/insertPage.co") 
+	public String insertPage() {
+		System.out.println("글 등록 페이지 호출 처리");
+		return "community/insertCmnt.jsp"; //글 등록 페이지 이동
+	}
+	
 	//글 작성
-	@RequestMapping(value = "/insertCmnt.co") 
-	public String insertCmnt(CommunityVO vo, HttpSession session) throws IOException {
+	@RequestMapping(value = "/insertCmnt.co", method = RequestMethod.POST) 
+	public String insertCmnt(CommunityVO vo, HttpSession session, Model model) throws IOException {
 		System.out.println("글 작성 처리");
 		
 		//파일 업로드 처리
 		String fileSaveFolder = session.getServletContext().getRealPath("/communityUpload/");
-		MultipartFile uploadFile = vo.getFile();
+		MultipartFile uploadFile = vo.getFile(); 
 		if(!uploadFile.isEmpty()) { //파일이 첨부된 경우 
 			String fileName = uploadFile.getOriginalFilename(); 
 			System.out.println(fileName);
 			uploadFile.transferTo(new File(fileSaveFolder+fileName)); 
-			vo.setCmnt_file(fileSaveFolder+fileName); //파일 경로 저장
-		}else { //파일이 첨부되지 않은 경우
-			vo.setCmnt_file("파일이 첨부되지 않았습니다.");
+//			vo.setCmnt_file(fileSaveFolder+fileName); //파일 경로 저장
+			vo.setCmnt_file(fileName); //파일명 저장
+		}
+		else { //파일이 첨부되지 않은 경우
+			vo.setCmnt_file("");
 		}
 		
 		communityService.insertCmnt(vo);
-		return "redirect:getCmntList.co"; //전체 글 페이지 이동
+		model.getAttribute("community");
+		return "redirect:getCmntList.co"; //전체 글 목록 페이지 이동
 	}
 
 	//목록 검색용 데이터
@@ -67,6 +75,14 @@ public class CommunityFrontController { //커뮤니티 게시판
 //		return paging;
 //	}
 	
+//	@RequestMapping("/updateReply_content.co")
+//	public String updateReply_content(CommunityVO vo) {
+//		System.out.println("댓글 추가 처리");
+//		communityService.updateReply_content(vo);
+//		System.out.println(vo); 
+//		return "getCmnt.co"; //글 상세 페이지 이동
+//	}
+	
 	//전체 글 조회
 	@RequestMapping("/getCmntList.co") 
 	public String getCmntList(CommunityVO vo, Model model) {
@@ -74,6 +90,8 @@ public class CommunityFrontController { //커뮤니티 게시판
 		//검색
 		if(vo.getSearchCondition() == null) { vo.setSearchCondition("SUBJECT"); }
 		if(vo.getSearchKeyword() == null) { vo.setSearchKeyword(""); }
+		if(vo.getCategory() == null) { vo.setCategory("전체"); }
+		
 		
 		model.addAttribute("communityList", communityService.getCmntList(vo));
 		
@@ -83,18 +101,19 @@ public class CommunityFrontController { //커뮤니티 게시판
 	//글 상세 조회
 	@RequestMapping("/getCmnt.co") 
 	public String getCmnt(CommunityVO vo, Model model) {
-		System.out.println("글 상세 조회 처리");
+//		System.out.println("글 상세 조회 처리");
 		communityService.updateReadcount(vo); //조회수 업데이트
+		model.getAttribute("member");
 		model.addAttribute("community", communityService.getCmnt(vo));
 		return "community/getCmnt.jsp"; //글 상세 페이지 이동
 	}
 	
 	//글 수정
 	@RequestMapping(value = "/updateCmnt.co", method = RequestMethod.POST) 
-	public String updateCmnt(@ModelAttribute("community") CommunityVO vo) {
+	public String updateCmnt(@ModelAttribute("community") CommunityVO vo, Model model) {
 		System.out.println("글 수정 처리");
 		communityService.updateCmnt(vo);
-		return "redirect:community/getCmnt.jsp"; //글 상세 페이지 이동
+		return "getCmnt.co"; //글 상세 페이지 이동
 	}
 	
 	//글 삭제

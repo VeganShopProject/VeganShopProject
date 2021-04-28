@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 상세</title>
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
 <style type="text/css">
 	body {
 	  font-family: Arial;
@@ -120,7 +121,8 @@
 </style>
 </head>
 <body>
-
+	<jsp:include page="/main/header.jsp" />
+	<jsp:include page="/main/banner.jsp" />
 	
 
 <div class="main">
@@ -166,6 +168,7 @@
 		</div>
 	</div>	
 </div>
+	<jsp:include page="/main/footer.jsp" />
 
 </body>
 </html>
