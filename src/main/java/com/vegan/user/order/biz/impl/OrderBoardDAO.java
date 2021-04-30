@@ -21,9 +21,12 @@ public class OrderBoardDAO {
 	private SqlSessionTemplate mybatis;
 	
 	public void prepareOrder(OrderBoardVO vo) {
+		
+//		mybatis.update("OrderBoardDAOTemp.dropTableIfexist", vo);	
 		mybatis.update("OrderBoardDAOTemp.createCheckOutTable", vo);	
 		mybatis.update("OrderBoardDAOTemp.alterOrder_num", vo);
 		mybatis.update("OrderBoardDAOTemp.updateOrder_num", vo);
+		//mybatis.update("OrderBoardDAOTemp.renameCheckOutTable", vo);
 
 		
 	}
@@ -35,6 +38,7 @@ public class OrderBoardDAO {
 		mybatis.update("OrderBoardDAOTemp.alterOrder_num", vo);
 		mybatis.update("OrderBoardDAOTemp.updateOrder_numOnlyThis", vo);		
 		mybatis.update("OrderBoardDAOTemp.updateOrder_num", vo);
+		//mybatis.update("OrderBoardDAOTemp.renameCheckOutTable", vo);
 		
 	}
 	
@@ -108,7 +112,10 @@ public class OrderBoardDAO {
 	public void insertOrder(OrderBoardVO vo) {
 
 		mybatis.insert("OrderBoardDAOTemp.copyTemp", vo);	
+		mybatis.update("OrderBoardDAOTemp.goodsAmountDecrease", vo);
 		mybatis.update("OrderBoardDAOTemp.dropCheckOutTable", vo);
+		
+		mybatis.delete("OrderBoardDAOTemp.deleteBasket", vo);
 
 	}
 
@@ -121,6 +128,9 @@ public class OrderBoardDAO {
 		
 	}
 
+	public int updateOrderStatus(OrderBoardVO vo) {
+		return mybatis.update("OrderBoardDAOTemp.updateOrderStatus", vo);
+	}
 
 
 	

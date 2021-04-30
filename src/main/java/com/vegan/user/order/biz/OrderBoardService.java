@@ -22,5 +22,7 @@ public interface OrderBoardService {
 	void backOrder(OrderBoardVO vo);
 
 	void prepareOrderOnly(OrderBoardVO vo);
+
+	int updateOrderStatus(OrderBoardVO vo);
 	
 }

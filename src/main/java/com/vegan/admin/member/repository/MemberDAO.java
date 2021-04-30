@@ -19,9 +19,15 @@ public class MemberDAO {
 	}
 	
 	//회원 로그인
-	public void memberLogin(MemberVO vo) { 
+	public String memberLogin(MemberVO vo) { 
 		System.out.println("memberLogin()가 실행됐습니다.");
-		myBatis.selectOne("MemberDAOTemp.idCheck", vo);
+		return myBatis.selectOne("MemberDAOTemp.memberLogin", vo);
+	}
+	
+	//회원 탈퇴
+	public void memberOut(MemberVO vo) {
+		System.out.println("memberOut()가 실행됐습니다.");
+		myBatis.delete("MemberDAOTemp.memberOut", vo);
 	}
 	
 	//아이디 중복확인
@@ -36,10 +42,16 @@ public class MemberDAO {
 		return myBatis.selectList("ZipcodeDAOTemp.searchZipcode", vo);
 	}
 	
-	//아이디/비밀번호 찾기
-	public String findMember(MemberVO vo) { 
-		System.out.println("findMember()가 실행됐습니다.");
-		return myBatis.selectOne("MemberDAOTemp.findMember", vo);
+	//아이디 찾기
+	public MemberVO findMemberId(MemberVO vo) { 
+		System.out.println("findMemberId()가 실행됐습니다.");
+		return myBatis.selectOne("MemberDAOTemp.findMemberId", vo);
+	}
+	
+	//비밀번호 찾기
+	public MemberVO findMemberPw(MemberVO vo) { 
+		System.out.println("findMemberPw()가 실행됐습니다.");
+		return myBatis.selectOne("MemberDAOTemp.findMemberPw", vo);
 	}
 	
 	//회원 체크
@@ -73,7 +85,7 @@ public class MemberDAO {
 		myBatis.update("MemberDAOTemp.updateMember", vo);
 	}
 
-	//회원 정보 삭제
+	//회원 정보 탈퇴
 	public void deleteMember(MemberVO vo) { 
 		System.out.println("deleteMember()가 실행됐습니다.");
 		myBatis.delete("MemberDAOTemp.deleteMember", vo);

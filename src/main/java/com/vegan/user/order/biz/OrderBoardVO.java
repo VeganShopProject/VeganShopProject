@@ -24,7 +24,6 @@ public class OrderBoardVO {
 	private String  order_receive_addr1;
 	private String  order_receive_addr2;
 	private String  order_receive_phone;
-	private String  order_receive_mobile;
 	private String order_receive_email;
 	private String order_receive_zipcode1;
 	private String order_receive_zipcode2;
@@ -169,13 +168,6 @@ public class OrderBoardVO {
 		this.order_receive_phone = order_receive_phone;
 	}
 
-	public String getOrder_receive_mobile() {
-		return order_receive_mobile;
-	}
-
-	public void setOrder_receive_mobile(String order_receive_mobile) {
-		this.order_receive_mobile = order_receive_mobile;
-	}
 
 	public String getOrder_memo() {
 		return order_memo;

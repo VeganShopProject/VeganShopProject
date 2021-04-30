@@ -15,6 +15,9 @@
 		<typeAlias alias="faq" type="com.vegan.user.faq.biz.faqBoardVO"/>
   		<typeAlias alias="basket" type="com.vegan.user.basket.dao.BasketVO"/>		
 		<typeAlias alias="order" type="com.vegan.user.order.biz.OrderBoardVO"/>
+		<typeAlias alias="goods" type="com.vegan.admin.goods.db.GoodsVO"/>
+		<typeAlias alias="review" type="com.vegan.user.goods.review.db.ReviewVO"/>
+		<typeAlias alias="recipe" type="com.vegan.admin.recipe.db.RecipeVO"/>
   	
   	</typeAliases>
   	
@@ -29,6 +32,9 @@
 		<mapper resource="mappings/faq-mapping.xml"/>
 		<mapper resource="mappings/basket-mapping.xml"/>
 		<mapper resource="mappings/order-mapping.xml"/>
+		<mapper resource="mappings/goods-mapping.xml"/>
+		<mapper resource="mappings/review-mapping.xml"/>
+		<mapper resource="mappings/recipe-mapping.xml"/>
   	</mappers>
   
 </configuration>

@@ -7,13 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>기본 에러 화면(ArithmeticException)</title>
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-	.main {
-		position: absolute;
-		
-		left: 50%;
-		margin-left: -500px;
+.main {
+		text-align: center;
+		margin: 100px auto;		
 		width: 1000px;
+		
+		
 	}
 	table {
 		text-align: center;
@@ -45,7 +46,22 @@
 	 	font-size: small;
  	}
  	
- 	.back a {
+	.chk_btn {
+	    border-radius: 8px;
+	    font-size: 14px;
+	    padding: 10px 15px;
+	    background-color: #3B5E3B;
+	    transition: all 0.3s;
+	    color: #ffffff;
+	    border: none;
+	    transition: all 0.3s;
+	}
+	
+	.chk_btn:hover {
+	    background-color: #649E64;
+	}
+ 	
+ 	/* .back a {
  		color: white;
 	  	background-color: #4C874E;
 	  	text-decoration: none;
@@ -69,12 +85,14 @@
 	  	background-color: white;
 	  	color: #4C874E;
  	
- 	}
+ 	} */
  	
 </style>
 
 </head>
 <body> 
+		<jsp:include page="/main/header.jsp" />
+	<jsp:include page="/main/banner.jsp" />
 	<div class="main">
 		<table>
 		<tr>
@@ -92,8 +110,10 @@
 		</tr>
 	</table>
 		<div class="back">
-			<a href="javascript:history.go(-1)">돌아가기</a>
+			<a href="javascript:history.go(-1)" class="chk_btn">돌아가기</a>
 		</div>
 	</div>
+	
+<jsp:include page="/main/footer.jsp" />
 </body>
 </html>

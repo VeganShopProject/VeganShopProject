@@ -1,50 +1,123 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-	body {
-	  font-family: Arial;
-	  margin: 0;
-	}
+	* {
+	box-sizing: border-box;
+	font-family: 'Nanum Myeongjo';
+}
 
-	
-	.main{
-		padding: 16px;
-	  background-color: #fff;
-	}
-	
-	.main .title_wrap {
-	  position: relative;
-	  margin: 80px 0 50px;
-	}
-	
-	.main .title_wrap h3 {
-	  font:400 40px/40px 'Roboto','Noto Sans KR';
-	  color:#222222;
-	  text-align: center;
-	  letter-spacing: -0.2px;
-	}
-	.main .title_wrap h5 {
-	  font:400 20px/20px 'Roboto','Noto Sans KR';
-	  color:#222222;
-	  text-align: center;
-	  letter-spacing: -0.2px;
-	}
-	
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+}
+
+header, section, article, main, nav, aside, footer {
+	display: block;
+}
+
+header:after, section:after, article:after, main:after, nav:after, aside:after,
+	footer:after {
+	content: "";
+	display: block;
+	clear: both;
+}
 
 
-	 .main .inquiry_cont_wrap .inquiry_table {	  	
-	 	width: 1000px;
+ul, ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button{
+	background: inherit ; 
+	border:none; 
+	box-shadow:none; 
+	border-radius:0; 
+	padding:0; 
+	overflow:visible;
+	 cursor:pointer;
+} 
+	
+	#category_wrap{
+	width: 80%;
+	padding-bottom:100px;
+	padding-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 900px;
+	background-color: white;
+}
+
+
+
+.order_wrap{
+	display:inline-block;
+	width:75%;
+}
+
+.order_wrap .member_name{
+	text-align: center;
+	vertical-align:top;
+	
+	margin-bottom: 50px;
+}
+
+.title_wrap h3  {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+        margin: 0;
+        text-align: center;
+     box-sizing: border-box;
+    font-family: 'Malgun Gothic';
+}	
+
+.title_wrap h5 {
+	    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    margin: 0;
+     text-align: center;
+  box-sizing: border-box;
+    font-family: 'Malgun Gothic';
+
+}
+
+	 .inquiry_table {	  	
+	 	width: 85%;
 	 	margin: 0 auto;
 	 	border-collapse: collapse;
 	 	font-size: 12pt;
   		
 	 	
 	 }
+
 	 
 	.inquiry_table tr td:not(#lasttag), .inquiry_table tr th{
 		border-top: 1px solid #ddd;
@@ -53,91 +126,138 @@
 	
 	}
 	
-	#firstLastTag th, #firstLastTag td {
-		border-bottom: 1px solid #ddd;
-	}
+
 	 
 	.inquiry_table td {
 	 	
- 		padding: 20px;
+ 		padding: 10px;
   		text-align: left;
   		font-weight: normal;
 	 
 	 }
 	
 	.inquiry_table th {
-		padding: 8px;
+		padding: 4px;
 		text-align: center;
-	  	color: black;
-	  	width: 20%;
-	  	background-color: #F0F0ED;
+	  	color: white;
+	  	width: 15%;
+	  	    background-color: #213421;
 	  	font-weight: normal;
 	}
 	
 	#lasttag {
-		
+		border-top: 1px solid #ddd;
 		text-align: center;
+		
 
 	}
-	
-	.inquiry_table tr:last-child td a {
-	  	color: white;
-	  	background-color: #4C874E;
-	  	text-decoration: none;
-	  	border-radius: 5px;
-	  	padding: 10px 15px ;
+#firstLastTag th, #firstLastTag td {
+		border-bottom: 1px solid #ddd;
 	}
+	 
 	
-	.inquiry_table tr:last-child td a:link {
-	  	color: white;
-	}
-	
-	.inquiry_table tr:last-child td a:visited {
-	  	color: white;
-	}
-	
-	.inquiry_table tr:last-child td a:hover {
-	  	border: 2px solid #4C874E;
-	  	background-color: white;
-	  	color: #4C874E;
+	.inquiry_table input[type=text] {
+	  	height: 25px;
+	  	font-size: 13pt;
+	  	border: 1px solid #ddd;
 	}
 	
 	#content {
 		vertical-align: top;
 		height: 200px;
-	  	font-size: 12pt;
+	  	font-size: 11pt;
+	  	width: 100%;
+	  	border: 1px solid #ddd;
+	}
+	.inquiry_table input[type=file] {
+	  	height: 30px;
+	  	font-size: 13pt;
+	  	
+	}
+	
+	.inquiry_table select {
+	  	height: 25px;
+	  	font-size: 13pt;
+	  	border: 1px solid #ddd;
 	}
 	
 
 
+.chk_btn {
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 10px 15px;
+    background-color: #213421;
+    transition: all 0.3s;
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s;
+    margin: 50px 0px;
+}
+
+
+.chk_btn:hover {
+    background-color: #649E64;
+}
+
+
 </style>
 </head>
+
 <body>
 
+	<jsp:include page="/main/header.jsp" />
+	<jsp:include page="/main/banner.jsp" />
 
-	<div class="main">
-		<div class="title_wrap clfix">
-			<h3>1:1 문의 게시판</h3>
-			<h5>${member.name}님이 남겨주신 문의에 대한 답변입니다. </h5>
-		</div>
-		<div class="inquiry_cont_wrap">
-			<table class="inquiry_table">
-				<tr>
-					<th>답변 내용</th>
-					<td colspan="2" id="content">${reply.content}</td>
-				</tr>
-				<tr id="firstLastTag">
-					<th> 답변 등록일</th>
-					<td colspan="2">${reply.qaa_date }</td>
-				</tr>
-			</table>
-		</div>
+
+
+<div class="under_line"></div>
+<div  id="member_all_wrap">
+
+	<div  id="category_wrap">
+		
+		<%@ include file="customerServiceSidenav.jsp" %>	
+		
+		
+		<div class="order_wrap">
+			<div class="title_wrap clfix member_name">
+				<h3>1:1 문의 게시판</h3>
+				<h5>${member.name}님이 남겨주신 문의에 대한 답변입니다. </h5>
+			</div>
+			<div class="inquiry_cont_wrap"><br>			
+				<div class="inquiry_cont_wrap">
+				
+					<table class="inquiry_table">
+						<tr>
+							<th>답변 내용</th>
+							<td colspan="2" id="content">${reply.content}</td>
+						</tr>
+						<tr id="firstLastTag">
+							<th> 답변 등록일</th>
+							<td colspan="2"><fmt:formatDate value="${reply.qaa_date }" pattern="yyyy-MM-dd"/></td>
+						</tr>
+	
+					
+
+					</table>
+				</div>
+				
+			</div><br><br><br>
+			
+			<%@ include file="QAAReplyDetail.jsp" %>
 	</div>
+		
+		</div>
+		
+		
+		
+		</div>
+
+
 	
-	<%@ include file="QAAReplyDetail.jsp" %>		
-	
-	
-	<script type="text/javascript">
+		<jsp:include page="/main/footer.jsp" />
+		
+<script type="text/javascript">
 		
 
 		
@@ -183,5 +303,8 @@
 		  });
 		}
 	</script>	
+
+
+
 </body>
 </html>

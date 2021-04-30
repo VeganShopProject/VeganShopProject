@@ -1,46 +1,119 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-	body {
-	  font-family: Arial;
-	  margin: 0;
-	}
+	* {
+	box-sizing: border-box;
+	font-family: 'Nanum Myeongjo';
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+}
+
+header, section, article, main, nav, aside, footer {
+	display: block;
+}
+
+header:after, section:after, article:after, main:after, nav:after, aside:after,
+	footer:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+ul, ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button{
+	background: inherit ; 
+	border:none; 
+	box-shadow:none; 
+	border-radius:0; 
+	padding:0; 
+	overflow:visible;
+	 cursor:pointer;
+} 
 	
+	#category_wrap{
+	width: 80%;
+	padding-bottom:100px;
+	padding-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 900px;
+	background-color: white;
+}
+
+
+
+.order_wrap{
+	display:inline-block;
+	width:75%;
+}
+
+.order_wrap .member_name{
+	text-align: center;
+	vertical-align:top;
 	
-	
-	.main{
-		padding: 16px;
-	  background-color: #fff;
-	}
-	
-	.main .title_wrap {
-	  position: relative;
-	  margin: 80px 0 50px;
-	}
-	
-	.main .title_wrap h3 {
-	  font:400 40px/40px 'Roboto','Noto Sans KR';
-	  color:#222222;
-	  text-align: center;
-	  letter-spacing: -0.2px;
-	}
-	.main .title_wrap h5 {
-	  font:400 20px/20px 'Roboto','Noto Sans KR';
-	  color:#222222;
-	  text-align: center;
-	  letter-spacing: -0.2px;
-	}
-	
+	margin-bottom: 50px;
+}
+
+
+.title_wrap h3  {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+        margin: 0;
+        text-align: center;
+     box-sizing: border-box;
+    font-family: 'Malgun Gothic';
+}	
+
+.title_wrap h5 {
+	    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    margin: 0;
+     text-align: center;
+  box-sizing: border-box;
+    font-family: 'Malgun Gothic';
+
+}
+
+
 
 
 	 .inquiry_table {	  	
-	 	width: 1000px;
+	 	width: 85%;
 	 	margin: 0 auto;
 	 	border-collapse: collapse;
 	 	font-size: 12pt;
@@ -60,131 +133,152 @@
 	 
 	.inquiry_table td {
 	 	
- 		padding: 20px;
+ 		padding: 10px;
   		text-align: left;
   		font-weight: normal;
 	 
 	 }
 	
 	.inquiry_table th {
-		padding: 8px;
+		padding: 4px;
 		text-align: center;
-	  	color: black;
-	  	width: 20%;
-	  	background-color: #F0F0ED;
+	  	color: white;
+	  	width: 15%;
+	  	    background-color: #213421;
 	  	font-weight: normal;
 	}
-	
-	.inquiry_table input[type=text] {
-	  	height: 25px;
-	  	font-size: 15pt;
-	  	border: 1px solid #ddd;
-	}
-	
-	#content {
-		vertical-align: top;
-		height: 200px;
-	  	font-size: 12pt;
-	  	width: 100%;
-	  	border: 1px solid #ddd;
-	}
-	
 	
 	#lasttag {
 		
 		text-align: center;
 
 	}
-	
-	#lasttag a {
-	  	color: white;
-	  	background-color: #4C874E;
-	  	text-decoration: none;
-	  	border-radius: 5px;
-	  	padding: 10px 15px ;
-	}
-	
-	#lasttag a:link {
-	  	color: white;
-	}
-	
-	#lasttag a:visited {
-	  	color: white;
-	}
-	
-	#lasttag a:hover {
-	  	border: 2px solid #4C874E;
-	  	background-color: white;
-	  	color: #4C874E;
-	}
-	
 
 	
+	.inquiry_table input[type=text] {
+	  	height: 25px;
+	  	font-size: 13pt;
+	  	border: 1px solid #ddd;
+	}
+	
+	#content {
+		vertical-align: top;
+		height: 200px;
+	  	font-size: 11pt;
+	  	width: 100%;
+	  	border: 1px solid #ddd;
+	}
+	.inquiry_table input[type=file] {
+	  	height: 30px;
+	  	font-size: 13pt;
+	  	
+	}
+	
+	.inquiry_table select {
+	  	height: 25px;
+	  	font-size: 13pt;
+	  	border: 1px solid #ddd;
+	}
+	
+.chk_btn {
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 10px 15px;
+    background-color: #213421;
+    transition: all 0.3s;
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s;
+    margin: 50px 0px;
+}
+
+.chk_btn:hover {
+    background-color: #649E64;
+}
+
 
 
 </style>
 </head>
+
 <body>
-	
-	<div class="main">
-		<div class="title_wrap clfix">
-			<h3>1:1 문의 게시판</h3>
-			<h5>${member.name}님이 남겨주신 문의 사항입니다. </h5>
-		</div>
-		<div class="inquiry_cont_wrap">
-			
-			<form action="updateBoard.qa" method="post" id="updateBoard" name="updateQaa">
-				<table class="inquiry_table">
-					<tr>
-					<th>카테고리</th>
-					<td  colspan="2" name="category">${qaa.category }</td>
-				</tr>
-				
-				<tr>
-					<th>제목</th>
-					<td colspan="2">
-						<input name="subject" type="text" value="${qaa.subject }" />
-					</td>
-				</tr>
 
-				
-				<tr>
-					<th>내용</th>
-					<td colspan="2"><textarea name="content" id="content">${qaa.content }</textarea></td>
-				</tr>
-				<c:if test='${qaa.image != null}'>
-				<tr>
-					<th>첨부파일</th>
-					<td colspan="2"><img src="${qaa.image }" width="300" height="200"/></td>
-				</tr> </c:if>
-				<tr>
-					<th >등록일</th>
-					<td colspan="2">${qaa.qaa_date }</td>
-				</tr>
-				<tr>
-					<td colspan="3"><br>
-				</tr>
-				<tr>
-					<td colspan="3" id="lasttag">
-					<input name="id" type="hidden" value="${member.id}" />
-						<a href="/board/customerService/QAAinsert.jsp?id=${member.id }" id="insertBoard" class="post-request">새글 등록</a>&emsp;
-						<a href="javascript:updateQaa.submit()" class="post-request">수정 하기</a>&emsp;
-						<a href="/board/deleteBoard.qa?re_ref=${qaa.re_ref }&id=${member.id }" id="deleteBoard" class="post-request">글삭제</a>&emsp;
-						<a href="/board/getBoardList.qa?id=${member.id }" class="post-request">취소</a>
-					</td>
+	<jsp:include page="/main/header.jsp" />
+	<jsp:include page="/main/banner.jsp" />
+
+
+
+<div class="under_line"></div>
+<div  id="member_all_wrap">
+
+	<div  id="category_wrap">
 		
-				</tr>
-				</table>
-			</form>
-			<br><br><br><br><br><br><br><br><br>
+		<%@ include file="customerServiceSidenav.jsp" %>	
+		
+		
+		<div class="order_wrap">
+			<div class="title_wrap clfix">
+				<h3>1:1 문의 게시판</h3>
+				<h5>문의를 남겨주시면, 신속하게 도와 드리겠습니다.</h5><br><br>
+			</div>
+			<div class="inquiry_cont_wrap"><br>			
+				<form action="/board/insertBoard.qa" method="post" enctype="multipart/form-data" name="insertQaa">
+				
+					<table class="inquiry_table">
+						<tr >
+						<th>카테고리</th>
+						<td colspan="2" >${qaa.category }</td>
+					</tr>
+					
+					<tr>
+						<th>제목</th>
+						<td colspan="2">
+							<input name="subject" type="text" value="${qaa.subject }" size="50"/>
+					</tr>
+	
+					
+					<tr>
+						<th>내용</th>
+						<td colspan="2">
+						<textarea name="content" id="content" rows="15" style="resize: none; width:100%;">${qaa.content }</textarea></td>
+					</tr>
+					<c:if test='${qaa.image != null}'>
+						<tr>
+							<th>파일 첨부</th>
+							<td align="left" colspan="2"><img src="${qaa.image }" width="300" height="200" /></td>
+						</tr>
+					</c:if>
+					<tr>
+						<td colspan="3"><br><br>
+					</tr>
+					<tr>
+						<td colspan="3" id="lasttag">
+								<input name="id" type="hidden" value="${member.id}" />
+								<a href="/board/customerService/QAAinsert.jsp?id=${member.id }" class="post-request chk_btn">새글 등록</a>&emsp;
+								<a href="javascript:updateQaa.submit()" class="post-request chk_btn">수정 하기</a>&emsp;
+								<a href="/board/deleteBoard.qa?re_ref=${qaa.re_ref }&id=${member.id }" class="post-request chk_btn">글삭제</a>&emsp;
+								<a href="/board/getBoardList.qa?id=${member.id }" class="post-request chk_btn">취소</a>
+						</td>
 			
-		</div>
+					</tr>
+					</table>
+				</form>
+				
+			</div>
 	</div>
+		
+		</div>
+		
+		
+		
+		</div>
+
 
 	
-	
-<script type="text/javascript" >
-	
+		<jsp:include page="/main/footer.jsp" />
+
+<script>
+		//앵커테그 post 방식 전달.
 		// GET ALL THE LINKS WE WANT TO DO A POST ON
 		// jQuery EQUIVALENT WOULD BE $('.post-request').click(function(e)
 		var links = document.querySelectorAll('.post-request');
@@ -226,6 +320,8 @@
 		    form.submit();
 		  });
 		}
+		
 	</script>
+
 </body>
 </html>

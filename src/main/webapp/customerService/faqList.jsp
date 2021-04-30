@@ -10,132 +10,197 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>글 목록</title>
+
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
 <style type="text/css">
-	body {
-	  font-family: Nanum Myeongjo;
-	  margin: 0;
-	}
-	
-	.float{
-	 float: left;
-	}
-	
-	.main{
-	padding: 16px;
-	  background-color: #fff;
-	  position:absolute; 
-   	left:50%;
-     margin-left:-700px; 
-    
-	}
-	
+	* {
+	box-sizing: border-box;
+	font-family: 'Nanum Myeongjo';
+}
 
-	.title_wrap h3 {
-	  font:400 40px/40px 'Roboto','Nanum Myeongjo';
-	  color:#222222;
-	  text-align: center;
-	  letter-spacing: -0.2px;
-	}
-	
-	.title_wrap h5 {
-	  font:400 20px/20px 'Roboto','Nanum Myeongjo';
-	  color:#222222;
-	  text-align: center;
-	  letter-spacing: -0.2px;
-	}	
+html, body {
+	margin: 0;
+	padding: 0;
+}
 
-	
-	.inquiry_table {	  	
-	 	width: 1000px;
-	 	margin: 0 auto;
-	 	border-collapse: collapse;
-  		
-	 	
-	 }
-	 
-	 .inquiry_table th, .inquiry_table td {
-	 	border-bottom: 1px solid #ddd;
- 
-  		padding: 8px;
-  		text-align: center;
-	 
-	 }
-	
-	.inquiry_table tr:not(:first-child):hover {
+h1, h2, h3, h4, h5, h6, p {
+	margin: 0;
+}
 
-		background-color: #F0F0ED;
-	}
+header, section, article, main, nav, aside, footer {
+	display: block;
+}
+
+header:after, section:after, article:after, main:after, nav:after, aside:after,
+	footer:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+
+ul, ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button{
+	background: inherit ; 
+	border:none; 
+	box-shadow:none; 
+	border-radius:0; 
+	padding:0; 
+	overflow:visible;
+	 cursor:pointer;
+} 
+
+.text_hide {
+	display: inline-block;
+	text-indent: -9999px;
+}
+
+
+.under__line{
+	border-bottom: 2px solid #213421;
+}
+#category_wrap{
+	width: 80%;
+	padding-bottom:100px;
+	padding-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 900px;
+	background-color: white;
+}
+
+
+
+#order_wrap{
+	display:inline-block;
+	width:75%;
+}
+
+#order_wrap .member_name{
+	text-align: center;
+	vertical-align:top;
 	
-	
-	.inquiry_table th {
-	  padding-top: 12px;
-	  padding-bottom: 12px;
-	  border-top: 1px solid #F0F0ED;
-	  border-bottom: 1px solid #F0F0ED;
-	  background-color: #213421;
-	  font-weight: normal;
-	  color: white;
-	}
-	
-	.title 	{
-	
-	text-decoration: none; 
-	color: black}
-	
-	.title:hover 	{
-	
-	text-decoration: underline; 
-	color: black}
-	
-	#subject {
-		text-align: left;
-		padding-left: 15px;
-	}
+	margin-bottom: 50px;
+}
+
+
+
+.chk_btn{
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 15px 50px;
+    background-color: #213421;
+    transition: all 0.3s;
+    color: #ffffff;
+    border:none;
+    transition:all 0.3s;
+}
+
+.chk_btn:hover{
+    background-color: #649E64;
+
+}
+
+.under_line {
+	border-bottom: 2px solid #243421;
+	width:100%;
+}
+
+.con {
+	padding: 10px 5px;
+	margin-top: 20px;
+}
+
+
+.order_foreach td {
+	border-bottom: 1px solid #243421;
+}
+
 
 </style>
 
 
-
 </head>
 <body>
-
-<div class="main">
-	<%@ include file="customerServiceSidenav.jsp" %>
-	
-	<div class="float">
-		<div class="title_wrap clfix">
-			<h3>자주 묻는 질문</h3>
-			<h5>고객님들께서 자주 남겨주신 문의 사항들입니다. </h5>
-		</div>		
-		
-		<div class="inquiry_cont_wrap"><br>
-			<table class="inquiry_table">
-				<tr>
-					<th width="15%">번호</th>
-					<th width="20%">제목</th>
-					<th width="40%">내용</th>
-					<th width="15%">등록자</th>
-					<th width="10%">등록일</th>
-				</tr>				
+	<jsp:include page="/main/header.jsp" />
+	<jsp:include page="/main/banner.jsp" />
+<div class="under_line"></div>	
+<div id="member_all_wrap">
+<br>
+	<div id="category_wrap">
+			<%@ include file="customerServiceSidenav.jsp" %>	
+		<div id="order_wrap">
+				<div class="member_name">
+					<h1>자주 묻는 질문</h1>
+					<h3>고객님들께서 자주 남겨주신 문의 사항들입니다. </h3>
+				</div>
 				
-				<c:set var="count" value="0"/>
-				<c:forEach items="${faqBoardList}" var="board">
-					<tr>				
-						<c:set var="contentResult" value="${board.content }"/>
-						<c:set var="dot" value="..."/>
-						<c:set var="count" value="${count +1}"/>
-						<td>${count}</td>
-						<td><a href="getBoard.fu?seq=${board.seq}" class="title">${board.title }</a></td>
-						<td>${fn:substring(contentResult,0,56)}${dot }</td>
-						<td>${board.writer }</td>
-						<td><fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd"/></td>
+				
+				
+				<table width="85%" align="center" id="member_table" cellpadding="0" cellspacing="0">
+					<tr style="background-color:#243421; height: 26px ">
+							<td height="3" colspan="5" align=right></td>
 					</tr>
-				</c:forEach>
-			</table>
-		</div>		
-	</div>
+					<tr style="font-weight: normal; height: 40px;">
+						<th width="10%" class="under__line">번호</th>
+						<th width="40%" class="under__line">제목</th>
+						<th width="15%" class="under__line">등록자</th>
+						<th width="20%" class="under__line">등록일</th>
+					</tr>				
+					
+					<c:set var="count" value="0"/>
+					<c:forEach items="${faqBoardList}" var="board">
+						<tr align=center class="order_foreach" style="font-weight: normal; height: 60px; border-bottom: 1px solid #243421; border-top: 1px solid #243421" >				
+							
+							
+							<c:set var="count" value="${count +1}"/>
+							<td>${count }</td>
+							<td>${board.title }</td>
+							
+							<td>${board.writer }</td>
+							<td><fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd"/></td>
+						</tr>
+						<tr class="con" style="display:none;" >
+							<td align="center" style="font-size:15px; font-weight: 400; border-bottom: 2px solid #243421;  padding: 30px 10px;"  colspan="4">${board.content }</td>
+						</tr>
+						
+					</c:forEach>
+				</table>
+			</div> 
+		</div>
+	
+<br>
 </div>
 
+<jsp:include page="/main/footer.jsp" />
+
+<script src="/board/js/jquery-3.6.0.min.js"></script> 
+<script type="text/javascript">
+//FAQ함수
+		$(function() {
+			
+			$(".order_foreach").click(function() {
+				var view = $(this).next(".con");
+				view.toggle();	
+			
+			});
+		}); 
+		
+		
+		
+</script>  
+
+	
 
 </body>
 </html>

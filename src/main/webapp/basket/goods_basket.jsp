@@ -11,45 +11,58 @@
 <head>
 <title>쇼핑몰</title>
 
-
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/resources/css/basket.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
-
-	<table width="960" cellspacing="0" cellpadding="0" border="0"
-		align="center">
+	<jsp:include page="/main/header.jsp" />
+	<jsp:include page="/main/banner.jsp" />
+	
+<div class="basket_border"></div>	
+<div class="basket_wrap">
+	<table width="50%" align="center">
 		<tr>
 			<td colspan=2>
 				<!-- 장바구니 -->
 				<p align="center">
 				<form action="./prepareOrder.od" name="basketform" method="post">
 					<input type="hidden" name="order" value="basket">
-					<table width="80%">
-						<tr align=center>
-							<td><b>${member.name}님 장 바 구 니</b></td>
+					<table width="100%" class="basket_table1">
+						<tr align="center">
+							<td>
+							<c:if test='${member.id == "admin"}'>
+								<span>전체 회원 장바구니 목록</span>
+							</c:if>
+							<c:if test='${member.id != "admin"}'>
+								<span>${member.name}님 장바구니</span>
+							</c:if>
+							</td>
 						</tr>
 					</table>
 
-					<table width="80%" cellpadding="0" cellspacing="0">
-						<tr height=26 bgcolor="94d7e7">
+					<table width="100%" cellpadding="0" cellspacing="0">
+						<tr height=26 bgcolor="213421">
 							<td height="3" colspan="7" align=right></td>
 						</tr>
-						<tr bgcolor="#f0f8ff" align="center">
+						<tr align="center" height="45px">
 							<c:if test='${member.id == "admin"}'>
-								<td width="10%"><font size="2">이름</font></td>
+								<td width="10%" class="under__line">아이디</td>
 							</c:if>
-							<td width="15%"><font size="2">사진</font></td>
-							<td width="25%"><font size="2">제품명</font></td>
-							<td width="30%"><font size="2">수량</font></td>
-							<td width="10%"><font size="2">가격</font></td>
-							<td width="10%"><font size="2">취소</font></td>
+							<td width="15%" class="under__line">사진</td>
+							<td width="25%" class="under__line">제품명</td>
+							<td width="30%" class="under__line">수량</td>
+							<td width="10%" class="under__line">가격</td>
+							<c:if test='${member.id != "admin"}'>
+								<td width="10%" class="under__line">취소</td>
+							</c:if>
 						</tr>
 
 
 						<c:if test="${fn:length(basketList) == 0}">
 							<tr>
-								<td colspan="7" align="center"><font size="2">장바구니에
-										담긴 상품이 없습니다.</font></td>
+								<td colspan="7" align="center">장바구니에
+										담긴 상품이 없습니다.</td>
 							</tr>
 						</c:if>
 
@@ -59,17 +72,15 @@
 								<c:set var="sum_money"
 									value="${sum_money+ (basket.price * basket.amount)}" />
 								<!-- \${basket.필드}은 BasketVO의 필드값이랑 똑같아야 한다 -->
-								<tr align="center">
+								<tr align="center" class="basket_foreach">
 									<c:if test='${member.id == "admin"}'>
-										<td><font size="2">${basket.memberName}</font></td>
+										<td>${basket.memberId}</td>
 									</c:if>
-									<td><font size="2"><img
-											src="/board/resources/image/${basket.image}" width=50
-											height=50></font></td>
-									<td><font size="2">${basket.goodsName}</font></td>
-									<td><c:if test='${member.id != "admin"}'>
+									<td><img src="/board/GoodsUpload/${basket.image}" width=50 height=50></td>
+									<td>${basket.goodsName}</td>
+									<td><div class="btn_box"><c:if test='${member.id != "admin"}'>
 											<input type="button" value="-"
-												onClick='minusClick("${basket.goodsSeq}", ${basket.price})' />
+												onClick='minusClick("${basket.goodsSeq}", ${basket.price})' /> <!-- ${basket.goodsSeq}는 자바스크립트에서 문자열과 합쳐 고유 아이디로 사용하기 위해 숫자형을 문자열로 변환시키기 위해 큰따옴표로 감싸준다 -->
 											<span id="am__${basket.goodsSeq}">${basket.amount}</span>
 											<input type="button" value="+"
 												onClick='plusClick("${basket.goodsSeq}",${basket.goodsAmount}, ${basket.price})' />
@@ -79,26 +90,32 @@
 											<span id="am__${basket.goodsSeq}">${basket.amount}</span>
 											<input type="hidden" value="+"
 												onClick='plusClick("${basket.goodsSeq}",${basket.goodsAmount}, ${basket.price})' />
-										</c:if></td>
-									<td><font size="2"><fmt:formatNumber value="${basket.price}" pattern="#,###" /></font></td>
-									<td><font size="2"> <a
+										</c:if></div></td>
+									<td><fmt:formatNumber value="${basket.price}" pattern="#,###"/></td>
+									<c:if test='${member.id != "admin"}'>
+									<td> <a
 											href="deleteBasket.do?goodsSeq=${basket.goodsSeq}"
-											onclick="return confirm('삭제하시겠습니까?')" class="post-request">삭제</a>
-									</font></td>
+											onclick="return confirm('삭제하시겠습니까?')" class="post-request">
+											
+											<svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="#213421"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+											</a>
+									</td>
+									</c:if>
 								</tr>
 
 							</c:forEach>
 						</c:if>
 					</table>
 
-					<table width="80%" border="0" cellspacing="0" cellpadding="0">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" >
 						<tr>
-							<td height="2" bgcolor="94d7e7"></td>
+							<td height="2" bgcolor="213421"></td>
 						</tr>
 
 						<tr>
-							<td height="28">
-								<div align="right">
+							<td height="30">
+								<%-- <div align="right">총 주문금액 : <span id="sum__money">${sum_money}</span>원</div> --%>
+								<div align="right" class="sum_money">
 									총 주문금액 : <span id="sum__money"><fmt:formatNumber
 											value="${sum_money}" pattern="#,###" /> </span>원
 								</div>
@@ -107,22 +124,31 @@
 					</table>
 					<br>
 
-					<table width="80%" cellpadding="0" cellspacing="0">
+					<table width="100%" cellpadding="0" cellspacing="0">
 						<tr>
-							<td align="center"><c:if
-									test="${fn:length(basketList) != 0}">
-									<a href="javascript:basketform.submit()" > [구매하기] </a>
+							<td align="center">
+								<c:if test="${fn:length(basketList) != 0}">
+									<a href="javascript:basketform.submit()" class="buy_btn" > 구매하기</a>&#9;&#9;&#9;&#9;
 								</c:if>
-								<a href="/board/loginPage/main.jsp" > [상품 구경가기?? 링크 바꾸기] </a>
-								</td>
+								<a href="/board/getGoodsList.go" class="post-request buy_btn">상품 구경하기</a>
+							</td>
+								
+								
 						</tr>
 					</table>
 				</form> <!-- 장바구니 -->
 			</td>
 		</tr>
 	</table>
+</div>
+	<jsp:include page="/main/footer.jsp" />
+	
+	<%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/javaScript.js"></script> --%>
+
+
 
 	<script>
 	
@@ -158,7 +184,7 @@
 	
 		//수량감소
 		function minusClick(goodsSeq, price){
-			var qs = document.querySelector("#am__"+goodsSeq);
+			var qs = document.querySelector("#am__"+goodsSeq);  /* goodsSeq는 문자열과 합쳐 고유 아이디를 만들기 위해 */
 			var currentAmount = Number(qs.innerHTML);
 			if(currentAmount <= 1){
 				qs.innerHTML = 1;
@@ -179,6 +205,7 @@
 				updateAmount(qs, Number(goodsSeq), currentAmount + 1, price);
 			}
 		}
+		
 		
 		//앵커테그 post 방식 전달.
 		// GET ALL THE LINKS WE WANT TO DO A POST ON
@@ -228,3 +255,4 @@
 
 </body>
 </html>
+

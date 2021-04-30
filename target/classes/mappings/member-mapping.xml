@@ -4,14 +4,24 @@
 <!-- 회원 데이터 -->
 <mapper namespace="MemberDAOTemp">
 
+	<!-- 로그인 처리 
+	<select id="memberLogin" resultType="String">
+		<![CDATA[ select pw from member where id=#{id} ]]>
+	</select>-->
+
 	<!-- 아이디 중복확인 -->
 	<select id="idCheck" resultType="int">
 		<![CDATA[ select count(*) from member where id=#{id} ]]>
 	</select>
 	
-	<!-- 아이디/비밀번호 찾기 -->
-	<select id="findMember" resultType="String">
-		<![CDATA[ select id from member where name=#{name} and jumin1=#{jumin1} and jumin2=#{jumin2} ]]>
+	<!-- 아이디 찾기 -->
+	<select id="findMemberId" resultType="member">
+		<![CDATA[ select * from member where name=#{name} and email=#{email} ]]>
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findMemberPw" resultType="member">
+		<![CDATA[ select * from member where name=#{name} and id=#{id} and email=#{email} ]]>
 	</select>
 	
 	<!-- 사용자(관리자/회원) 로그인 체크 -->
@@ -19,33 +29,37 @@
 		<![CDATA[ select * from member where id=#{id} ]]>
 	</select>
 	
+	<!-- 회원가입 -->
 	<insert id="insertMember"> 
 		<![CDATA[
-			insert into member(seq, id, pw, name, jumin1, jumin2, email1, email2, email_get, mobile, phone, zipcode1, zipcode2, addr1, addr2)
-			values((select nvl(max(seq),0)+1 from member), #{id}, #{pw}, #{name}, #{jumin1}, #{jumin2}, #{email1}, #{email2}, #{email_get}, #{mobile}, #{phone}, #{zipcode1}, #{zipcode2}, #{addr1}, #{addr2} ) 
+			insert into member(seq, id, pw, name, email, email_get, zipcode1, zipcode2, phone, addr1, addr2, birth, member_date)
+			values((select nvl(max(seq),0)+1 from member), #{id}, #{pw}, #{name}, #{email}, #{email_get}, #{zipcode1}, #{zipcode2}, #{phone}, #{addr1}, #{addr2}, #{birth}, sysdate ) 
 		]]>
 	</insert>
 	
-	<select id="getMember" resultType="member">
+	<!-- <select id="getMember" resultType="member">
 		<![CDATA[ select * from member where seq=#{seq} ]]>
-	</select> 
+	</select>  -->
 	
-	<!-- 검색 기능 -->
+	<!-- 관리자 검색 기능(아이디) -->
 	<select id="getMemberList_I" resultType="member">
 		<![CDATA[ select * from member where id like '%'||#{searchKeyword}||'%' order by seq desc ]]>
 	</select>
 	
+	<!-- 관리자 검색 기능(이름) -->
 	<select id="getMemberList_N" resultType="member">
 		<![CDATA[ select * from member where name like '%'||#{searchKeyword}||'%' order by seq desc ]]>
 	</select>
 	
+	<!-- 회원정보 수정 -->
 	<update id="updateMember">
 		<![CDATA[ update member 
-						set pw=#{pw}, email1=#{email1}, email2=#{email2}, phone=#{phone} where seq=#{seq} ]]>
+						set pw=#{pw} where id=#{id} ]]>
 	</update>
 	
+	<!-- 회원탈퇴 -->
 	<delete id="deleteMember">
-		<![CDATA[ delete from member where seq=#{seq} ]]>
+		<![CDATA[ delete from member where pw=#{pw} ]]>
 	</delete>
 	
 </mapper>	

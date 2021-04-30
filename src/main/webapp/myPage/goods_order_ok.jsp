@@ -6,49 +6,46 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 페이지</title>
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+
+h2{color:#213421; font-size:30px;}
+.info{color:#213421; text-align:left; font-size: 20px; margin: 20px; padding:10px; margin:10px;}
+table{padding:10px; margin:10px; width:40%; border:0; cellpadding:0; cellspacing:1px;}
+.ttr{background-color:#213421; color:white; padding:10px; margin:10px; text-align: center;v}
+.ttinfo{color:#213421; padding:10px; margin:10px; text-align: center;  border-top:0.5px solid gray; }
+#border{border-bottom: 0.5px solid gray; }
+</style>
 </head>
 <body>
-	<table width="960" cellspacing="0" cellpadding="0" border="0"
-	align="center">
+<jsp:include page="/main/header.jsp" />
+<jsp:include page="/main/banner.jsp" />
+
+ <div class="wrap" style="min-height:600px; padding: 200px 0;">
+<center>
+	<h2>주문이 완료되었습니다.</h2>
+	
+
+	
+	<table class="payinfo">
+	<tr>
+	<td colspan=2 align=center class="info">입금정보</td>
+	</tr>
 		<tr>
-			<td colspan=2 align=center>
-				<b><font size=5>주문이 완료되었습니다.</font></b>
-				<table width=50% border=0 cellpadding="0" cellspacing="1">
-					<tr><td height=10><td></tr>
-					<tr><td height=10><td></tr>
-					<tr>
-						<td><b><font size=2>입금 정보</font></b></td>
-					</tr>
-					<tr align=center>
-						<td style="font-family: Tahoma; font-size: 8pt;" width=80 height=24
-							bgcolor="f7f7f7">입금 은행</td>
-						<td width=250 height=24><font size=2>국민은행</font></td>
-					</tr>
-					<tr>
-						<td style="background-color: #F0F0F0; height: 1px;" colspan=6>
-					</tr>
-					<tr align=center>
-						<td style="font-family: Tahoma; font-size: 8pt;" width=80 height=24
-							bgcolor="f7f7f7">예금주</td>
-						<td width=250 height=24><font size=2>홍길동</font></td>
-					</tr>
-					<tr>
-						<td style="background-color: #F0F0F0; height: 1px;" colspan=6>
-					</tr>
-					<tr align=center>
-						<td style="font-family: Tahoma; font-size: 8pt;" width=80 height=24
-							bgcolor="f7f7f7">입금 계좌</td>
-						<td width=250 height=24><font size=2>601xxx-xx-xxxxxxx</font></td>
-					</tr>
-					<tr>
-						<td style="background-color: #F0F0F0; height: 1px;" colspan=6>
-					</tr>
-						<tr>
-						<td style="background-color: #F0F0F0; height: 1px;" colspan=6>
-					</tr>
-				</table>
-			</td>
+			<td class="ttr"> 입금은행</td>
+			<td class="ttinfo"> 국민은행</td>
+		</tr>
+		<tr>
+			<td class="ttr" >예금주</td>
+			<td class="ttinfo"  >홍길동</td>
+		</tr>
+		<tr>
+			<td class="ttr">입금 계좌</td>
+			<td class="ttinfo" id="border">601xxx-xx-xxxxxxx</td>
 		</tr>
 	</table>
+</center>
+</div>
+<jsp:include page="/main/footer.jsp" />
 </body>
 </html>

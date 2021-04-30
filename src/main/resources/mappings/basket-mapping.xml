@@ -4,20 +4,22 @@
 <mapper namespace="basketMapper">
 
 	<select id="getBasketList" resultType="basket"> <!-- resultType은 반환형 -->
-		<![CDATA[
 		SELECT                                         
 			G.SEQ		    AS goodsSeq,
 			B.AMOUNT 	AS amount,
 			G.NAME		AS goodsName,
-			G.IMAGE		AS image,
+			G.IMAGE01		AS image,
 			G.PRICE		AS price,
 			M.NAME		AS memberName,
 			G.AMOUNT		AS goodsAmount
 		FROM BASKET B 
 		JOIN GOODS G ON B.GOODS_SEQ = G.SEQ 
 		JOIN MEMBER M ON B.MEMBER_SEQ = M.SEQ 
-		WHERE B.MEMBER_SEQ = #{memberSeq} ORDER BY B.reg_date
- 	]]>
+		<if test='memberId != "admin"'>  
+		WHERE B.MEMBER_SEQ = #{memberSeq} 
+		</if>		
+		ORDER BY B.reg_date
+ 
 	</select>
 
 

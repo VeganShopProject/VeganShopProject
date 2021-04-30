@@ -49,4 +49,10 @@ public class CommunityServiceImpl implements CommunityService {
 		cmnt.deleteCmnt(vo);
 	}
 
+	@Override
+	public void updateReply_content(CommunityVO vo) {
+		cmnt.updateReply_content(vo);
+		
+	}
+
 }
