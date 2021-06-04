@@ -17,6 +17,18 @@ public class CommunityDAO {
 		System.out.println("insertCmnt()가 실행됐습니다.");
 		myBatis.insert("CommunityDAOTemp.insertCmnt", vo);
 	}
+
+	//커뮤니티 댓글 작성
+	public void insertCmntReply(CommunityVO vo) { 
+		System.out.println("insertCmntReply()가 실행됐습니다.");
+		myBatis.insert("CommunityDAOTemp.insertCmntReply", vo);
+	}
+
+	//커뮤니티 댓글 작성
+	public void updateCmntReplySeq(CommunityVO vo) { 
+		System.out.println("updateCmntReplySeq()가 실행됐습니다.");
+		myBatis.update("CommunityDAOTemp.updateCmntReplySeq", vo);
+	}
 	
 	//커뮤니티 글 목록 조회
 	public List<CommunityVO> getCmntList(CommunityVO vo) { 
@@ -41,9 +53,9 @@ public class CommunityDAO {
 	}
 	
 	//글의 총 개수 
-	public Integer getListCount() {
-		return myBatis.selectOne("CommunityDAOTemp.getListCount");
-	}
+//	public Integer getListCount() {
+//		return myBatis.selectOne("CommunityDAOTemp.getListCount");
+//	}
  
 	public void updateReadcount(CommunityVO vo) {
 		System.out.println("updateReadcount()가 실행됐습니다.");
@@ -66,11 +78,6 @@ public class CommunityDAO {
 	public void deleteCmnt(CommunityVO vo) { 
 		System.out.println("deleteCmnt()가 실행됐습니다.");
 		myBatis.delete("CommunityDAOTemp.deleteCmnt", vo);
-	}
-	
-	public void updateReply_content(CommunityVO vo) {
-		System.out.println("updateReply_content()가 실행됐습니다.");
-		myBatis.update("CommunityDAOTemp.updateReply_content", vo);
 	}
 	
 }

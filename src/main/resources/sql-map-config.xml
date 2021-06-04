@@ -18,7 +18,6 @@
 		<typeAlias alias="goods" type="com.vegan.admin.goods.db.GoodsVO"/>
 		<typeAlias alias="review" type="com.vegan.user.goods.review.db.ReviewVO"/>
 		<typeAlias alias="recipe" type="com.vegan.admin.recipe.db.RecipeVO"/>
-  	
   	</typeAliases>
   	
   	<!-- Sql Mapper 설정 -->

@@ -11,7 +11,7 @@
 <title>커뮤니티</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/community/getCmntList.css" rel="stylesheet" type="text/css"> <!-- ${pageContext.request.contextPath } -->
+<link href="${pageContext.request.contextPath}/community/css/getCmntList.css" rel="stylesheet" type="text/css"> <!-- ${pageContext.request.contextPath } -->
 </head>
 
 <body>
@@ -44,23 +44,22 @@
 					<tr class="tbl_category">
 						<th width= "10%" class="under_line">번호</th>
 						<th width= "15%" class="under_line">카테고리</th>
-						<th width= "45%" class="under_line">제목</th>
+						<th width= "40%" class="under_line">제목</th>
 						<th width= "10%" class="under_line">작성자</th>
 						<th width= "15%" class="under_line">작성일</th>
-						<th width= "5%" class="under_line">조회수</th>
+						<th width= "10%" class="under_line">조회수</th>
 					</tr>
 					
 					<c:set var="sum" value="0" /> 
-			      <c:set var="count" value="-1" /> 
-			      <c:forEach items="${communityList }" var="community" >
-			         <c:set var="sum" value="${sum+1 }"/>
-			      </c:forEach>
+			      	<c:set var="count" value="-1" /> 
+			      	<c:forEach items="${communityList }" var="community" >
+			        	<c:set var="sum" value="${sum+1 }"/>
+			      	</c:forEach>
 					
 					<c:forEach items="${communityList }" var="community">
 					 <c:set var="count" value="${count+1 }"/>
 						<tr class="tbl_content">
 	               			<td class="thin_line" >${sum - count}</td>
-							<%-- <td class="thin_line">${community.seq }</td> --%>
 							<td class="thin_line">${community.category }</td>
 							<td class="thin_line" align="left">
 								<a href="./getCmnt.co?seq=${community.seq }">${community.subject }</a></td>
@@ -71,7 +70,7 @@
 					</c:forEach>
 					<c:if test="${empty communityList }">
 						<tr class="tbl_content">
-							<td class="thin_line">등록된 글이 없습니다.</td>
+							<td class="thin_line" colspan="6">등록된 글이 없습니다.</td>
 						</tr>
 					</c:if>
 	
@@ -80,7 +79,12 @@
 
 			<div id="insertCmnt">
 				<div style="text-align: end;">
-					<input type="button" value="글쓰기" onclick="insertCmnt()" class="chk_btn" />
+					<c:if test="${member.id != null }"> <!-- 로그인O -->
+						<input type="button" value="글쓰기" onclick="location.href='community/insertCmnt.jsp'" class="chk_btn" />
+					</c:if>
+					<c:if test="${member.id == null }"> <!-- 로그인X -->
+						<input type="button" value="글쓰기" onclick="location.href='community/insertCmntLogin.jsp'" class="chk_btn" />
+					</c:if>
 				</div>
 			</div>
 			
@@ -104,11 +108,6 @@
 <jsp:include page="/main/footer.jsp" />
 
 <script type="text/javascript">
-function insertCmnt(){
-	var url = "community/insertCmnt.jsp";
-	location.href = url;
-}
-
 /* $(function() {
 	   $(".search").change(function() {
 	       //선택한 값 = val

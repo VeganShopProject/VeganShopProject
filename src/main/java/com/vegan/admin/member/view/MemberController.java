@@ -28,7 +28,7 @@ import com.vegan.admin.member.service.MemberService;
 
 @Controller
 @SessionAttributes("member")
-public class MemberFrontController { //회원 관리
+public class MemberController { //회원 관리
 
 	@Autowired
 	private MemberService memberService;
@@ -40,13 +40,9 @@ public class MemberFrontController { //회원 관리
 	@RequestMapping(value = "/memberLogin.me", method = RequestMethod.POST)
 	public String memberCheck(MemberVO vo, Model model, HttpSession session, HttpServletResponse response) throws IOException {
 		MemberVO member = memberService.memberCheck(vo);
-		
-		
 	
 		if(member != null) { //db에 데이터가 있는 경우
-			
 			model.addAttribute("member", member);
-			
 			session.setAttribute("member", member);
 			session.setAttribute("seq", member.getSeq());
 			session.setAttribute("id", member.getId());
@@ -60,7 +56,6 @@ public class MemberFrontController { //회원 관리
 			else if(vo.getPw().equals(member.getPw())) { //비밀번호가 일치하는 경우
 				System.out.println("로그인 처리");
 				return "main/main.jsp"; //회원 페이지 이동
-				
 			}else if(!vo.getPw().equals(member.getPw())){ //비밀번호가 불일치하는 경우
 				System.out.println("비밀번호 불일치");
 				response.setContentType("text/html; charset=UTF-8");
@@ -70,7 +65,6 @@ public class MemberFrontController { //회원 관리
 				out.println("history.go(-1);");
 				out.println("</script>"); 
 				out.flush();
-//				return "redirect:loginPage/login.jsp";
 				return "";
 			}
 		}else { //db에 데이터가 없는 경우
@@ -78,53 +72,30 @@ public class MemberFrontController { //회원 관리
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('아이디와 비밀번호를 확인하세요');");
-//			out.println("history.go(-1);");
+			out.println("alert('가입하지 않는 아이디이거나 잘못된 비밀번호입니다');");
 			out.println("</script>");
 			out.flush();
 			return "loginPage/login.jsp";
 		}
-		
-		
 		return "redirect:loginPage/login.jsp";
-		
-//		if((vo.getId()).equals("admin")) { //관리자인 경우
-//			System.out.println("관리자 로그인");
-//			return "adminPage/adminMain.jsp"; //회원관리(관리자) 페이지 이동
-//		}else { //회원인 경우
-//			System.out.println("로그인 처리");
-//			
-//			return "main/main.jsp"; //회원 페이지 이동
-//		}
 	}
 	
 	@RequestMapping(value = "/filterQaaLogin.me", method = RequestMethod.POST)
 	public String goBackPreviousPageQaa(MemberVO vo, Model model, HttpSession session) {
-		
 		MemberVO member = memberService.memberCheck(vo);
 		model.addAttribute("member", member);
-		
 		session.setAttribute("seq", member.getSeq());
 		session.setAttribute("id", member.getId());
-
-	
-		
 		return "./getBoardList.qa";
-
 	}
 	
 	@RequestMapping(value = "/filterBasketLogin.me", method = RequestMethod.POST)
 	public String goBackPreviousPageBasket(MemberVO vo, Model model, HttpSession session) {
-		
 		MemberVO member = memberService.memberCheck(vo);
 		model.addAttribute("member", member);
 		session.setAttribute("seq", member.getSeq());
 		session.setAttribute("id", member.getId());
-
-		
-		
 		return "./basketList.do";
-
 	}
 	
 	
@@ -136,11 +107,7 @@ public class MemberFrontController { //회원 관리
 		session.setAttribute("id", member.getId());
 		session.setAttribute("pw", member.getPw()); //이전 로그인, 직전 로그인 판별용.
 		session.setAttribute("test", 1);	
-	
-		
-		
 		return "./addBasket.do";
-
 	}
 	
 	@RequestMapping(value = "/filterOrderLogin.me", method = RequestMethod.POST)
@@ -150,10 +117,7 @@ public class MemberFrontController { //회원 관리
 		session.setAttribute("seq", member.getSeq());
 		session.setAttribute("id", member.getId());	
 		System.out.println("1");
-
-		
 		return "./orderList.od";
-
 	}
 	
 	@RequestMapping(value = "/filterOrderOnlyThisLogin.me", method = RequestMethod.POST)
@@ -165,7 +129,6 @@ public class MemberFrontController { //회원 관리
 		session.setAttribute("pw", member.getPw()); //이전 로그인, 직전 로그인 판별용.
 		session.setAttribute("test", 1);	
 		return "./prepareOrderOnly.od";
-
 	}
 	
 	@RequestMapping(value = "/filterMemberPageLogin.me", method = RequestMethod.POST)
@@ -174,10 +137,7 @@ public class MemberFrontController { //회원 관리
 		model.addAttribute("member", member);
 		session.setAttribute("seq", member.getSeq());
 		session.setAttribute("id", member.getId());	
-
-			
 		return "./getMyPage.me";
-
 	}
 	
 //	민지 추가
@@ -188,80 +148,94 @@ public class MemberFrontController { //회원 관리
 		session.setAttribute("seq", member.getSeq());
 		session.setAttribute("id", member.getId());	
 		session.setAttribute("test", 1);	
-
-		
 		return "./insertReview.re";
-
+	}
+	
+	//커뮤니티 게시판 글 작성할 때
+	@RequestMapping(value = "/filterInsertCmntLogin.me", method = RequestMethod.POST)
+	public String goBackPreviousPageCommunity(MemberVO vo, Model model, HttpSession session) {
+		MemberVO member = memberService.memberCheck(vo);
+		model.addAttribute("member", member);
+		session.setAttribute("seq", member.getSeq());
+		session.setAttribute("id", member.getId());	
+		return "/community/insertCmnt.jsp";
+	}
+	
+	//커뮤니티 게시판 댓글 작성할 때
+	@RequestMapping(value = "/filterInsertReplyLogin.me", method = RequestMethod.POST)
+	public String goBackPreviousPageCommunityReply(MemberVO vo, Model model, HttpSession session) {
+		MemberVO member = memberService.memberCheck(vo);
+		model.addAttribute("member", member);
+//		session.setAttribute("seq", member.getSeq());
+		session.setAttribute("id", member.getId());	
+		session.getAttribute("community");
+		return "/getCmnt.co?seq="+vo.getSeq();
 	}
 	
 	//추가
 	@RequestMapping(value = "/getMyPage.me", method = RequestMethod.POST)
 	public String getMemberPage(MemberVO vo, Model model, HttpSession session) {
-				
 		return "orderList.od";
-
 	}
 	
 	@RequestMapping(value = "/getMyPage.me", method = RequestMethod.GET)
 	public String getMemberPageNeedLogin(MemberVO vo, Model model, HttpSession session) {
-		
 		return "/myPage/memberPageLogin.jsp";
-
 	}
 	
-	
 	//로그아웃 처리
-		@RequestMapping(value = "/memberLogout.me")
-		public String memberLogout(MemberVO vo, Model model, HttpSession session) {
-			System.out.println("로그아웃 처리");
-			session.removeAttribute("member");
-			session.removeAttribute("id");
-			session.removeAttribute("seq");
-			session.removeAttribute("pw");
-			session.removeAttribute("test");
-			
-			model.addAttribute("member", null);
-			return "redirect:/main/main.jsp";
-		}
+	@RequestMapping(value = "/memberLogout.me")
+	public String memberLogout(MemberVO vo, Model model, HttpSession session) {
+		System.out.println("로그아웃 처리");
+		session.removeAttribute("member");
+		session.removeAttribute("id");
+		session.removeAttribute("seq");
+		session.removeAttribute("pw");
+		session.removeAttribute("test");
+		
+		model.addAttribute("member", null);
+//		return "redirect:/main/main.jsp"; //redirect가 안됨
+		return "/main/main.jsp"; //
+	}
 
 	//아이디 중복확인
-		@RequestMapping("/idCheck.me") 
-		public String idCheck(MemberVO vo, Model model, HttpServletResponse response) throws IOException {
-			System.out.println("아이디 중복확인 처리");
-			Integer check = memberService.idCheck(vo);  //같은 id의 개수를 return
-			response.setContentType("text/html; charset=UTF-8");
-			
-			if(vo.getId().equals("")) { //입력하지 않은 경우
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('아이디를 입력하세요')");
-				out.println("history.go(-1)");
-				out.println("</script>");
-				out.flush();
-			}else if(check == 1) { //이미 존재하는 아이디인 경우
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('이미 등록된 아이디입니다')");
-				out.println("history.go(-1)");
-				out.println("</script>");
-				out.flush();
-			}else if(vo.getId().length() < 6) { //아이디가 6자리 미만인 경우
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('아이디는 최소 6자리 이상 입력하세요')");
-				out.println("history.go(-1)");
-				out.println("</script>");
-				out.flush();
-			}else{ //아이디가 존재하지 않는 경우
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('사용이 가능합니다')");
-				out.println("history.go(-1)");
-				out.println("</script>");
-				out.flush();
-			}
-			return "/loginPage/memberJoin.jsp";
+	@RequestMapping("/idCheck.me") 
+	public String idCheck(MemberVO vo, Model model, HttpServletResponse response) throws IOException {
+		System.out.println("아이디 중복확인 처리");
+		Integer check = memberService.idCheck(vo);  //같은 id의 개수를 return
+		response.setContentType("text/html; charset=UTF-8");
+		
+		if(vo.getId().equals("")) { //입력하지 않은 경우
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('아이디를 입력하세요')");
+			out.println("history.go(-1)");
+			out.println("</script>");
+			out.flush();
+		}else if(check == 1) { //이미 존재하는 아이디인 경우
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('이미 등록된 아이디입니다')");
+			out.println("history.go(-1)");
+			out.println("</script>");
+			out.flush();
+		}else if(vo.getId().length() < 6) { //아이디가 6자리 미만인 경우
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('아이디는 최소 6자리 이상 입력하세요')");
+			out.println("history.go(-1)");
+			out.println("</script>");
+			out.flush();
+		}else{ //아이디가 존재하지 않는 경우
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('사용이 가능합니다')");
+			out.println("history.go(-1)");
+			out.println("</script>");
+			out.flush();
 		}
+		return "/loginPage/memberJoin.jsp";
+	}
 	
 	//계정 비밀번호 체크(개인정보 수정시)
 	@RequestMapping(value = "/pwCheck.me", method = RequestMethod.POST)
@@ -326,7 +300,9 @@ public class MemberFrontController { //회원 관리
 		String content = " <h2 style=\"color:#213421; font-size:40px; font-family: 'Noto Sans KR', sans-serif;\">"+name+"  님 비밀번호 찾기 메일입니다.<br/></h2>";
 		String content1 ="<p style=\"font-size:20px;\">"+ name + "  님의 비밀번호는 "+"</p>"+"<p style=\"color:red; font-size:18px;\">"+ pw +"</p>";
 		String content2 = "<p style=\"font-size:20px;\">"+" 입니다."+"</p><br/>";
-		String content3 = "<br/><a href=\"http://192.168.0.85:8090/board\"><button style=\"background-color: #213421; color: white; border: 0px; width: 200px; height: 40px; border-radius:10px;\">홈페이지 바로가기 </button></a>";
+//		String content3 = "<br/><a href=\"http://192.168.0.85:8090/board\"><button style=\"background-color: #213421; color: white; border: 0px; width: 200px; height: 40px; border-radius:10px;\">홈페이지 바로가기 </button></a>";
+//		String content3 = "<br/><a href=\"http://localhost:8085/board\"><button style=\"background-color: #213421; color: white; border: 0px; width: 200px; height: 40px; border-radius:10px;\">홈페이지 바로가기 </button></a>";
+		String content3 = "<br/><a href=\"http://localhost:8090/board\"><button style=\"background-color: #213421; color: white; border: 0px; width: 200px; height: 40px; border-radius:10px;\">홈페이지 바로가기 </button></a>";
 		
 	   
 	    try {
@@ -344,7 +320,8 @@ public class MemberFrontController { //회원 관리
 			  messageHelper.setText(contents, true); 
 			  
 			  FileSystemResource file = new
-			  FileSystemResource(new File("C:/workspaces/spring/VeganShopProject_210427/src/main/webapp/image/logo3.png"));
+//			  FileSystemResource(new File("C:/workspaces/spring/VeganShopProject_210427/src/main/webapp/image/logo3.png"));
+			  FileSystemResource(new File("C:/workspaces/spring/VeganShopProject_210430/src/main/webapp/image/logo3.png"));
 			  messageHelper.addInline("logo3.png", file);
 		
 	      mailSender.send(message);
@@ -381,8 +358,11 @@ public class MemberFrontController { //회원 관리
 	    String title   = "비긴비건에 가입하신 것을 환영합니다";     // 제목
 	    String content = "<h2> 비긴비건에 가입하신 것을 환영합니다.</h2>";   // 내용
 	    String content1="<br>아름다운 날이에요"; 
-	    String content2 = "<br/><a href=\"http://192.168.0.85:8090/board\"><button style=\"background-color: #213421; color: white; border: 0px; width: 200px; height: 40px; border-radius:10px;\">홈페이지 바로가기 </button></a>";
+//	    String content2 = "<br/><a href=\"http://192.168.0.85:8090/board\"><button style=\"background-color: #213421; color: white; border: 0px; width: 200px; height: 40px; border-radius:10px;\">홈페이지 바로가기 </button></a>";
+//	    String content2 = "<br/><a href=\"http://localhost:8085/board\"><button style=\"background-color: #213421; color: white; border: 0px; width: 200px; height: 40px; border-radius:10px;\">홈페이지 바로가기 </button></a>";
+	    String content2 = "<br/><a href=\"http://localhost:8090/board\"><button style=\"background-color: #213421; color: white; border: 0px; width: 200px; height: 40px; border-radius:10px;\">홈페이지 바로가기 </button></a>";
 	   
+	    
 	    try {
 	      MimeMessage message = mailSender.createMimeMessage();
 	      MimeMessageHelper messageHelper 
@@ -399,7 +379,8 @@ public class MemberFrontController { //회원 관리
 			  messageHelper.setText(contents, true); 
 			  
 			  FileSystemResource file = new
-			  FileSystemResource(new File("C:/workspaces/spring/VeganShopProject_210427/src/main/webapp/image/welcomeMail.png"));
+//			  FileSystemResource(new File("C:/workspaces/spring/VeganShopProject_210427/src/main/webapp/image/welcomeMail.png"));
+			  FileSystemResource(new File("C:/workspaces/spring/VeganShopProject_210430/src/main/webapp/image/welcomeMail.png"));
 			  messageHelper.addInline("welcomeMail.png", file);
 			
 		  //Mail에 img 삽입 
@@ -491,7 +472,7 @@ public class MemberFrontController { //회원 관리
 			memberService.deleteMember(vo);
 			session.removeAttribute("member");
 			session.removeAttribute("id");
-			return "redirect:/";
+			return "./memberLogout.me"; //탈퇴해도 로그인 상태가 유지되서 로그아웃 url을 다시 요청
 		}
 	}
 }

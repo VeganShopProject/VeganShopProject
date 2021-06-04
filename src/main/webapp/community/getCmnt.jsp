@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>커뮤니티 상세페이지</title>
+<title>커뮤니티</title>
 <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/css/community/getCmnt.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/community/css/getCmnt.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -48,8 +48,8 @@
 					<td class="wrap_padding_content" colspan="2">
 						<c:if test="${!empty community.cmnt_file }">
 							<img src="./communityUpload/${community.cmnt_file }"><br>
-							${community.content }
 						</c:if>
+						${community.content }
 					</td>
 				</tr>
 				<tr class="content_last">
@@ -60,82 +60,210 @@
 				</tr>
 			</table>
 			
-			<div class="wrap_button_all">
-				<div class="wrap_button_first">
-					<span class="button_left">
-						<!-- <input type="button" value="목록"  onclick="getCmntList()"/> -->
-						<a href="#" class="chk_btn" onclick="getCmntList()">목록</a>
-					</span>
-				</div>
+			<!-- 댓글 -->
+			<div class="cont_comment">
+				<div class="reply_all_wrap">
 				
+					<div class="comment_view">
+						<%-- <c:if test="${community.re_lev > 0 }"> <!-- 댓글O -->
+							<c:forEach items="${communityList }" var="community"> --%>
+								<ul class="list_comment">
+								
+									<%-- <c:if test="${member.name == community.writer }"> --%> <!-- 본인 댓글(진한 배경색) --!>
+										<!-- 내가 작성한 댓글 -->
+										<li class="my_comment">
+											<div class="comment_section">
+												<div class="comment_info">
+													<div class="comment_post">
+														<div class="profile_info"> 
+															<span class="txt_name">${community.writer }</span>
+															<span class="txt_date">
+																<fmt:formatDate value="${community.cmnt_date }" pattern="yy.MM.dd hh:ss"/> 
+															</span>
+														</div>
+														<div class="box_post">
+															<p class="desc_info">
+																<span class="original_comment">ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ</span>
+															</p>
+														</div>
+														<!-- 답글창 -->
+														<div class="comment_more"> 
+															<input type="hidden" value="${member.id }" />
+															<a class="link_write">답글</a>
+															<div class="inner_text_write"> 
+																<div class="box_textarea">
+																	<%-- <input type="hidden" name="writer" value="${member.name }" />
+																	<input type="hidden" name="seq" value="${community.seq }" />
+																	<input type="hidden" name="re_lev" value="${community.re_lev }" />
+																	<input type="hidden" name="re_seq" value="${community.re_seq }" />  --%>
+																	<textarea id="reply" name="content" rows="4" cols="120" maxlength="600"
+																					placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."></textarea>
+																</div>
+																<div class="wrap_menu">
+																	<div class="area_r">
+																		<div id="reply_cnt">(0 / 600)</div>
+																		<div class="btn_group">
+																			<a class="chk_btn_reg">등록</a>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- 점 세개(본인:수정,삭제 / 다른 회원:신고 -->
+															<div class="opt_more_g"> 
+																<button type="button" class="btn_g_ico btn_more_menu" data-target-element-id="_cmt-19472-4" data-modifiable="true" data-removable="true" data-reportable="false" data-content-type="COMMENT">
+																	<span class="ico_bbs ico_more">기능 더보기</span>
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</li>
+									<%-- </c:if> --%>
+									<!-- 다른 회원 댓글 -->
+										<li>
+										<%-- <c:if test="${member.name != community.writer }"> --%> 
+											<div class="comment_section">
+												<div class="comment_info">
+													<div class="comment_post">
+														<div class="profile_info"> 
+															<span class="txt_name">${community.writer }</span>
+															<span class="txt_date">
+																<fmt:formatDate value="${community.cmnt_date }" pattern="yy.MM.dd hh:ss"/>
+															</span>
+														</div>
+														<div class="box_post">
+															<p class="desc_info">
+																<span class="original_comment">댓글 테스트 글의 댓글</span>
+															</p>
+														</div>
+														<!-- 답글창 -->
+														<div class="comment_more"> 
+															<input type="hidden" value="${community.writer }" />
+															<a class="link_write">답글</a>
+															<div class="inner_text_write">
+																<div class="box_textarea">
+																	<%-- <input type="hidden" name="writer" value="${member.name }" />
+																	<input type="hidden" name="seq" value="${community.seq }" />
+																	<input type="hidden" name="re_lev" value="${community.re_lev }" />
+																	<input type="hidden" name="re_seq" value="${community.re_seq }" />  --%>
+																	<textarea id="reply" name="content" rows="4" cols="120" maxlength="600"
+																					placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."></textarea>
+																</div>
+																<div class="wrap_menu">
+																	<div class="area_r">
+																		<div id="reply_cnt">(0 / 600)</div>
+																		<div class="btn_group">
+																			<a class="chk_btn_reg">등록</a>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- 점 세개(본인:수정,삭제 / 다른 회원:신고 -->
+															<div class="opt_more_g"> 
+																<button type="button" class="btn_g_ico btn_more_menu" data-target-element-id="_cmt-19472-4" data-modifiable="true" data-removable="true" data-reportable="false" data-content-type="COMMENT">
+																	<span class="ico_bbs ico_more">기능 더보기</span>
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<%-- </c:if> --%>
+										</li>
+								</ul>
+							<%-- </c:forEach>
+						</c:if> --%>
+					</div>
+					
+					<!-- 페이징 -->
+					<div class="simple_paging light-theme simple-pagination">
+						<ul>
+							<li class="disabled">
+								<span class="current prev">
+									<span class="ico_prev">
+										<span class="sr_only">이전 목록으로 이동</span>
+									</span>
+								</span>
+							</li>
+							<li class="active">
+								<span class="current">1</span>
+							</li>
+							<li class="disabled">
+								<span class="current next">
+									<span class="ico_next">
+										<span class="sr_only">다음 목록으로 이동</span>
+									</span>
+								</span>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="text_write_g comment_write">
+						
+						<c:if test="${member != null }"> 
+						<!-- 로그인O -->
+							<div class="inner_text_write">
+								<div class="box_textarea">
+									<input type="hidden" name="writer" value="${member.name }" />
+									<%-- <input type="hidden" name="seq" value="${community.seq }" />
+									<input type="hidden" name="re_lev" value="${community.re_lev }" />
+									<input type="hidden" name="re_seq" value="${community.re_seq }" /> --%>
+									<textarea id="reply" name="content" rows="4" cols="120" maxlength="600"
+													placeholder="인터넷은 우리가 함께 만들어가는 소중한 공간입니다. 댓글 작성 시 타인에 대한 배려와 책임을 담아주세요."></textarea>
+								</div>
+								<div class="wrap_menu">
+									<div class="area_r">
+										<div id="reply_cnt">(0 / 600)</div>
+										<div class="btn_group">
+											<a class="chk_btn_reg">등록</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:if>
+						
+						<c:if test="${member == null }"> 
+						<!-- 로그인X -->
+							<div class="inner_text_write">
+								<div class="box_textarea">
+									<span>회원에게만 댓글 작성 권한이 있습니다.</span>
+									<div class="btn_group">
+										<a href="#" class="chk_btn" onclick="location.href='./community/insertReplyLogin.jsp'">로그인</a>
+									</div>
+								</div>
+							</div>
+						</c:if>
+					</div>
+				</div>
+		</div>
+			
+		<div class="wrap_button_all">
+			<div class="wrap_button_first">
+				<span class="button_left">
+					<a href="#" class="chk_btn" onclick="location.href='./getCmntList.co'">목록</a>
+				</span>
+			</div>
+			<c:if test="${member.name == community.writer }">
 				<div class="wrap_button_second">
 					<span class="button_right">
-						<!-- <form name="form" action="community/updateCmnt.jsp">
-							<input type="submit" value="수정" class="chk_btn" /> -->
 							<a href="./community/updateCmnt.jsp" class="chk_btn">수정</a>
-						<!-- </form>
-						<input type="button" value="삭제" class="chk_btn" onclick="deleteCheck()"/> -->
 						<a href="#" class="chk_btn" onclick="deleteCheck()">삭제</a>
 					</span>
 				</div>
-			</div>
-		
-	</div>
-			
+			</c:if>
 		</div>
+			
+	</div>
+	
+</div>
 		
-		<div class="thin_line"></div>
-
-		
-		<!-- 댓글 -->
-		<%-- <div id="comment">
-			<table>
-				<tr id="category">
-					<td>댓글달기</td>
-				</tr>
-				<tr>
-					<td>
-						이름 : <input type="text" value="${member.name }" id="style">
-						비밀번호 : <input type="password" value="${member.pw }" id="style">
-					</td>
-				</tr>
-				<tr>	
-					<td>
-						<!-- <form action="updateReply_content.co"> -->
-							<textarea rows="2" cols="130" name="reply_content"></textarea>
-							<!-- <input type="submit" value="확인" id="button_comment"> -->
-							<a href="updateReply_content.co?seq=${community.seq }" class="chk_btn">확인</a>
-						<!-- </form> -->
-					</td>
-				</tr>
-			</table>
-		</div> --%>
+<div class="thin_line"></div>
 		
 <jsp:include page="/main/footer.jsp" />
 
-<script type="text/javascript">
-function deleteCheck(){
-	var url = "./deleteCmnt.co?seq="+form.seq.value;
-	var answer = confirm("정말로 삭제하시겠습니까?");
-	
-	if(answer == true){
-		alert("삭제되었습니다.");
-		location.href = url;
-	}
-}
-
-function getCmntList(){
-	location.href = "./getCmntList.co";
-}
-
-function updateCmnt(){
-	location.href = "./updateCmnt.co";
-}
-
-/* function updateReply_content(){
-	location.href = "./updateReply_content.co"; 
-} */
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/community/js/getCmnt.js"></script>
 
 </body>
 </html>
