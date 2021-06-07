@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>커뮤니티 글 작성</title>
+<title>커뮤니티</title>
 <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/css/community/insertCmnt.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/community/css/insertCmnt.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -34,7 +34,7 @@
 				</tr>
 				<tr>
 					<th class="category">제목</th>
-					<td class="content"><input type="text" name="subject" size="35"/></td>
+					<td class="content"><input type="text" name="subject" size="60"/></td>
 				</tr>
 				<tr>
 					<th class="category">작성자</th>
@@ -53,8 +53,7 @@
 			<div class="wrap_button_all">
 				<div class="wrap_button_first">
 					<span class="button_left">
-						<!-- <input type="button" value="목록"  onclick="getCmntList()"/> -->
-						<a href="#" class="chk_btn" onclick="getCmntList()">목록</a>
+						<a href="#" class="chk_btn" onclick="location.href='../getCmntList.co'">목록</a>
 					</span>
 				</div>
 				
@@ -74,44 +73,9 @@
 	</div>
 </form>
 		
-		<div class="thin_line"></div>
+<div class="thin_line"></div>
 
-		
-		<!-- 댓글 -->
-		<%-- <div id="comment">
-			<table>
-				<tr id="category">
-					<td>댓글달기</td>
-				</tr>
-				<tr>
-					<td>
-						이름 : <input type="text" value="${member.name }" id="style">
-						비밀번호 : <input type="password" value="${member.pw }" id="style">
-					</td>
-				</tr>
-				<tr>	
-					<td>
-						<!-- <form action="updateReply_content.co"> -->
-							<textarea rows="2" cols="130" name="reply_content"></textarea>
-							<!-- <input type="submit" value="확인" id="button_comment"> -->
-							<a href="updateReply_content.co?seq=${community.seq }" class="chk_btn">확인</a>
-						<!-- </form> -->
-					</td>
-				</tr>
-			</table>
-		</div> --%>
-		
 <jsp:include page="/main/footer.jsp" />
-
-<script type="text/javascript">
-function getCmntList(){
-	location.href = "./getCmntList.co";
-}
-
-/* function updateReply_content(){
-	location.href = "./updateReply_content.co"; 
-} */
-</script>
 
 </body>
 </html>

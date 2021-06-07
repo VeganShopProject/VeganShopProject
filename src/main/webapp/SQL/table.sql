@@ -16,9 +16,9 @@ CREATE TABLE MEMBER(
 	MEMBER_DATE 	DATE DEFAULT SYSDATE
 );
 select * from MEMBER;
-delete member where seq=2 and seq=3;
+delete member; where seq=2 and seq=3;
 --ADMIN을 무조건 1번으로 해주세요.
-insert into member values(1,'admin','admin','관리자',0,0,'','','','','','',sysdate);
+insert into member values(1,'admin','admin','관리자','','',0,0,0,'','',0,sysdate);
 insert into member values(2,'heejin','heejin1','장희진','hjjang7308@gmail.com','yes',111,111,01011111111,'집1','상세1',940616,sysdate);
 
 --주소 
@@ -33,6 +33,7 @@ CREATE TABLE ZIPCODE (
   BUNJI 			VARCHAR2(50)
 );
 select * from ZIPCODE; where dong like '%녹%';
+delete zipcode;
 
 --커뮤니티
 DROP TABLE COMMUNITY PURGE;
@@ -40,17 +41,28 @@ CREATE TABLE COMMUNITY(
 	SEQ  				NUMBER PRIMARY KEY,
 	CATEGORY		VARCHAR2(15),
 	WRITER			VARCHAR2(15),
-	SUBJECT  		VARCHAR2(50),
+	SUBJECT  		VARCHAR2(100),
 	CMNT_FILE		VARCHAR2(1000),
 	CONTENT	  	VARCHAR2(4000),
 	CMNT_DATE	DATE DEFAULT SYSDATE,
 	READCOUNT	NUMBER,
-	REPLY_CONTENT	VARCHAR2(1000)
+	RE_REF			NUMBER,
+	RE_LEV			NUMBER,
+	RE_SEQ			NUMBER
 );
-
 SELECT * FROM COMMUNITY;
 insert into community values(1,'레시피','더조은','제 인생레시피 공유합니다!','63ab86fec52dd5669108fa58949650d1.jpg','다들 꼭 드셔보세요. 레시피도 진짜 쉬워요!',sysdate,10,'');
 insert into community values(2,'식당정보','박채식','너무 맛있다~','추천.jpg','추천추천',sysdate,0,'');
+
+--댓글
+--DROP TABLE REPLY PURGE;
+--CREATE TABLE REPLY(
+--	SEQ  					NUMBER PRIMARY KEY,
+--	WRITER				VARCHAR2(15),
+--	CONTENT	  		VARCHAR2(4000),
+--	REPLY_DATE	DATE DEFAULT SYSDATE
+--);
+--SELECT * FROM REPLY;
 
 --1:1 문의
 DROP TABLE QAA PURGE;

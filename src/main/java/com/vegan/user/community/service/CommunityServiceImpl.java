@@ -20,15 +20,20 @@ public class CommunityServiceImpl implements CommunityService {
 	}
 
 	@Override
+	public void insertCmntReply(CommunityVO vo) {
+		cmnt.insertCmntReply(vo);
+	}
+
+	@Override
+	public void updateCmntReplySeq(CommunityVO vo) {
+		cmnt.updateCmntReplySeq(vo);
+	}
+
+	@Override
 	public List<CommunityVO> getCmntList(CommunityVO vo) {
 		return cmnt.getCmntList(vo);
 	}
 
-	@Override
-	public Integer getListCount() {
-		return cmnt.getListCount();
-	}	
-	
 	@Override
 	public void updateReadcount(CommunityVO vo) {
 		cmnt.updateReadcount(vo);
@@ -47,12 +52,6 @@ public class CommunityServiceImpl implements CommunityService {
 	@Override
 	public void deleteCmnt(CommunityVO vo) {
 		cmnt.deleteCmnt(vo);
-	}
-
-	@Override
-	public void updateReply_content(CommunityVO vo) {
-		cmnt.updateReply_content(vo);
-		
 	}
 
 }

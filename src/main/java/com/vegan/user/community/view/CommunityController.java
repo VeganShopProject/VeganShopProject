@@ -22,7 +22,7 @@ import com.vegan.user.community.service.CommunityService;
 
 @Controller
 @SessionAttributes("community")
-public class CommunityFrontController { //커뮤니티 게시판
+public class CommunityController { //커뮤니티 게시판
 	
 	@Autowired
 	private CommunityService communityService;
@@ -56,6 +56,17 @@ public class CommunityFrontController { //커뮤니티 게시판
 		communityService.insertCmnt(vo);
 		model.getAttribute("community");
 		return "redirect:/getCmntList.co"; //전체 글 목록 페이지 이동
+	}
+	
+	//댓글 작성
+	@RequestMapping("/insertCmntReply.co") 
+	public String insertCmntReply(CommunityVO vo, HttpSession session, Model model) throws IOException {
+		System.out.println("커뮤니티 댓글 작성 처리");
+		
+		communityService.insertCmntReply(vo);
+		communityService.updateCmntReplySeq(vo);
+		model.getAttribute("community");
+		return ""; //글 상세 페이지 이동
 	}
 
 	//목록 검색용 데이터
@@ -107,7 +118,7 @@ public class CommunityFrontController { //커뮤니티 게시판
 	@RequestMapping("/getCmnt.co") 
 	public String getCmnt(CommunityVO vo, Model model) {
 //		System.out.println("커뮤니티 글 상세 조회 처리");
-		communityService.updateReadcount(vo); //조회수 업데이트
+//		communityService.updateReadcount(vo); //조회수 업데이트
 		model.getAttribute("member");
 		model.addAttribute("community", communityService.getCmnt(vo));
 		return "/community/getCmnt.jsp"; //글 상세 페이지 이동

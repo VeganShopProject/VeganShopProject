@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>커뮤니티 수정페이지</title>
+<title>커뮤니티</title>
 <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/css/community/updateCmnt.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/community/css/updateCmnt.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>

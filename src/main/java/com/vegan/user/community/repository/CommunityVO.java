@@ -20,12 +20,14 @@ public class CommunityVO {
 	private Date cmnt_date;
 	private int readcount; //조회수
 	
+	//댓글 관련 필드
+	private int re_ref; //글 정렬(원글과 동일)
+	private int re_lev; //댓글 들여쓰기
+	private int re_seq; //댓글 오름차순 정렬
+	
 	//검색 관련 필드
 	private String searchCondition; //검색 기능을 위한 필드
 	private String searchKeyword; //검색 기능을 위한 필드
-	
-	//댓글 관련 필드
-	private String reply_content;
 	
 	//페이징 관련 필드
 //	private int nowPage; //현재 페이지
@@ -122,6 +124,24 @@ public class CommunityVO {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
+	public int getRe_ref() {
+		return re_ref;
+	}
+	public void setRe_ref(int re_ref) {
+		this.re_ref = re_ref;
+	}
+	public int getRe_lev() {
+		return re_lev;
+	}
+	public void setRe_lev(int re_lev) {
+		this.re_lev = re_lev;
+	}
+	public int getRe_seq() {
+		return re_seq;
+	}
+	public void setRe_seq(int re_seq) {
+		this.re_seq = re_seq;
+	}
 	public String getSearchCondition() {
 		return searchCondition;
 	}
@@ -190,19 +210,12 @@ public class CommunityVO {
 //		this.endSeq = endSeq;
 //	}
 	
-	public String getReply_content() {
-		return reply_content;
-	}
-	public void setReply_content(String reply_content) {
-		this.reply_content = reply_content;
-	}
-	
 	@Override
 	public String toString() {
 		return "seq : "+seq+", category : "+category+", writer : "+writer+", subject : "+subject+", file : "+file+", cmnt_file : "+cmnt_file
 				+ ", content : "+content+", cmnt_date : "+cmnt_date+", readcount : "+readcount+"\n"
+				+ "[reply] ref : "+re_ref+", lev : "+re_lev+", seq : "+re_seq;
 //				+ ", nowPage : "+nowPage+", maxPage : "+maxPage+", startPage : "+startPage+", endPage : "+endPage+", maxSeq : "+maxSeq+", startSeq : "+startSeq+", endSeq : "+endSeq
-				+ ", reply_content : "+reply_content;
 	}
 	
 }
